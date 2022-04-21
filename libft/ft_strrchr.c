@@ -13,17 +13,17 @@
 #include<stdio.h>
 #include<string.h>
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	int		i;
 
 	i = 0;
-	while (*s != '\0') // Goes till the end of the string.
+	while (*s != '\0')
 		s++;
-	s--; // Avoid NULL '\0' character.
-	while (*s != '\0') // Goes back through the string.
+	s--;
+	while (*s != '\0')
 	{
-		if (*s == c) // Finds c and returns string.
+		if (*s == c)
 			return ((char *) s);
 		s--;
 	}
