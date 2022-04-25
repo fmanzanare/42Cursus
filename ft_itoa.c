@@ -11,8 +11,8 @@ char  *ft_itoa(int n)
   int   i;
   
   nb = n;
-  i = length(nb);
-  dst = (char *)malloc(sizeof(char) * (lenght(nb) + 1));
+  i = intlen(nb);
+  dst = (char *)malloc(sizeof(char) * (intlen(nb) + 1));
   if (!dst)
     return (0);
   dst[i--] = '\0';
@@ -31,7 +31,7 @@ char  *ft_itoa(int n)
   return (dst);
 }
 
-static int  lenght(long nb)
+static int  intlen(long nb)
 {
   int   len;
   if (nb == 0)
