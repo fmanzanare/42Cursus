@@ -2,7 +2,7 @@
 
 #include "libft.h"
 
-static int  lenght(long nb);
+static int  intlen(long nb);
 
 char  *ft_itoa(int n)
 {
