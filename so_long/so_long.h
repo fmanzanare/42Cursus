@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 13:02:09 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/21 17:07:20 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/06/22 17:04:53 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include<stdio.h>
 
 # define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
+# define WINDOW_HIGHT 1080
+# define IMG_X 80
+# define IMG_Y 80
 # define RED_PIXEL 0xFF0000
 # define GREEN_PIXEL 0x00FF00
 # define BLUE_PIXEL 0x0000FF
@@ -28,21 +30,22 @@
 # define PURPLE_PIXEL 0x800080
 # define WHITE_PIXEL 0xFFFFFF
 
+typedef struct s_imgtype
+{
+	void	*wall;
+	void	*floor;
+	void	*collect;
+	void	*player_1;
+	void	*player_2;
+	void	*exit;
+}				t_imgtype;
+
 typedef struct s_img
 {
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
+	int			x;
+	int			y;
+	t_imgtype	*type;
 }				t_img;
-
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-}				t_data;
 
 typedef struct s_controltab
 {
@@ -54,6 +57,14 @@ typedef struct s_controltab
 	int		exit;
 	int		perimeter;
 }				t_controltab;
+
+typedef struct s_data
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_img			*img;
+	t_controltab	*map;
+}				t_data;
 
 //void	ft_pixel_put(t_img *mlx_img, int x, int y, int color);
 //void	ft_render_background(t_img *img, int color);
@@ -67,5 +78,8 @@ void	mid_rows_ctrl(t_controltab *map, char *str, int x, int y);
 void	last_row_ctrl(t_controltab *map, char *str, int x, int i);
 int		perimeter_checker(t_controltab *map, int y);
 int		elements_control(t_controltab *map, char *str);
+void	open_images(t_data *data);
+void	render_function(t_data *data, char *str);
+void	close_images(t_data *data);
 
 #endif
