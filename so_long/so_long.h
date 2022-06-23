@@ -1,85 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 13:02:09 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/22 17:04:53 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/06/16 12:30:43 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/06/22 12:04:47 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include<mlx.h>
-# include"LIBFT/libft.h"
-# include<stdlib.h>
-# include<fcntl.h>
-# include<stdio.h>
-
-# define WINDOW_WIDTH 1920
-# define WINDOW_HIGHT 1080
-# define IMG_X 80
-# define IMG_Y 80
-# define RED_PIXEL 0xFF0000
-# define GREEN_PIXEL 0x00FF00
-# define BLUE_PIXEL 0x0000FF
-# define YELLOW_PIXEL 0xFFFF00
-# define PURPLE_PIXEL 0x800080
-# define WHITE_PIXEL 0xFFFFFF
-
-typedef struct s_imgtype
+char	*ft_read_map(char *file)
 {
-	void	*wall;
-	void	*floor;
-	void	*collect;
-	void	*player_1;
-	void	*player_2;
-	void	*exit;
-}				t_imgtype;
+	char			*str;
+	int				i;
+	int				fd;
+	char			tmp;
 
-typedef struct s_img
+	fd = open(file, O_RDONLY);
+	i = 0;
+	while (read(fd, &tmp, 1) > 0)
+		i++;
+	close(fd);
+	fd = open(file, O_RDONLY);
+	str = malloc(sizeof(char) * (i + 1));
+	read(fd, str, i);
+	close(fd);
+	str[i] = '\0';
+
+	printf("Largo del string: %i\n\n", i);
+
+	return (str);
+}
+
+int		map_checker(t_controltab *map, char *str)
 {
-	int			x;
-	int			y;
-	t_imgtype	*type;
-}				t_img;
+	if (perimeter_control(map, str) == 1)
+		return (1);
+	else if (elements_control(map, str) == 1)
+		return (1);
+	return (0);
+}
 
-typedef struct s_controltab
+/*void	ft_render_background(t_img *img, int color)
 {
-	char	*str_map;
-	int		width;
-	int		hight;
-	int		player;
-	int		collect;
-	int		exit;
-	int		perimeter;
-}				t_controltab;
+	int		i;
+	int		j;
 
-typedef struct s_data
+	i = 0;
+	while (i < WINDOW_HEIGHT)
+	{
+		j = 0;
+		while (j < WINDOW_WIDTH)
+			ft_pixel_put(img, j++, i, color);
+		i++;
+	}
+}
+
+void	ft_pixel_put(t_img *mlx_img, int x, int y, int color)
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-	t_img			*img;
-	t_controltab	*map;
-}				t_data;
+	char	*dst;
 
-//void	ft_pixel_put(t_img *mlx_img, int x, int y, int color);
-//void	ft_render_background(t_img *img, int color);
-char	*ft_read_map(char *file);
-int		map_checker(t_controltab *map, char *str);
-void	init_controltab(t_controltab *map);
-int		perimeter_control(t_controltab *map, char *str);
-int		columns_rows_and_check(t_controltab *map, char *str);
-void	first_row_ctrl(t_controltab *map, char *str, int x, int y);
-void	mid_rows_ctrl(t_controltab *map, char *str, int x, int y);
-void	last_row_ctrl(t_controltab *map, char *str, int x, int i);
-int		perimeter_checker(t_controltab *map, int y);
-int		elements_control(t_controltab *map, char *str);
-void	open_images(t_data *data);
-void	render_function(t_data *data, char *str);
-void	close_images(t_data *data);
-
-#endif
+	dst = mlx_img->addr + (y * mlx_img->line_len + x *(mlx_img->bpp / 8));
+	*(unsigned int *)dst = color;
+}*/
