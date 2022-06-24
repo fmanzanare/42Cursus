@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:53:31 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/23 18:43:28 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/06/24 12:52:42 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_img
 {
 	int			x;
 	int			y;
-	t_imgtype	*type;
+	t_imgtype	type;
 }				t_img;
 
 typedef struct s_controltab
@@ -53,7 +53,7 @@ typedef struct s_data
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	t_img			*img;
+	t_img			img;
 	t_controltab	map;
 }				t_data;
 
