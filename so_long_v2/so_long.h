@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:53:31 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/24 12:52:42 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/06/24 13:14:02 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	last_row_ctrl(t_controltab *map, int x, int i);
 int		perimeter_checker(t_controltab *map, int y);
 int		elements_control(t_controltab *map);
 void	open_images(t_data *data);
-void	prerender_function(t_data *data);
-void	render_function(t_data *data, int i, int j, int k);
+void	pre_print_map(t_data *data);
+void	print_map(t_data *data, int i, int j, int k);
 void	close_images(t_data *data);
 
 #endif
