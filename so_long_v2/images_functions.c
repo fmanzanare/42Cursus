@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 18:15:57 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/24 13:10:08 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/06/24 13:14:27 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	open_images(t_data *data)
 			"sprites/exit.xpm", &data->img.x, &data->img.y);
 }
 
-void	prerender_function(t_data *data)
+void	pre_print_map(t_data *data)
 {
 	int	i;
 	int	j;
@@ -37,10 +37,10 @@ void	prerender_function(t_data *data)
 	i = 0;
 	j = 0;
 	k = 0;
-	render_function(data, i, j, k);
+	print_map(data, i, j, k);
 }
 
-void	render_function(t_data *data, int i, int j, int k)
+void	print_map(t_data *data, int i, int j, int k)
 {
 	while (data->map.str_map[i] != '\0')
 	{
