@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:00:24 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/07/01 18:57:06 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/07/01 19:16:27 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int		main (int argc, char **argv)
 	open_images(&data);
 	pre_print_map(&data);
 	mlx_hook(data.win_ptr, 2, 0, input, &data);
-//	close_images(&data);
 	mlx_loop(data.mlx_ptr);
 
 	return (0);

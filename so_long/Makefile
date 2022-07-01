@@ -6,11 +6,11 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:37:23 by fmanzana          #+#    #+#              #
-#    Updated: 2022/07/01 19:03:21 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/07/01 19:16:41 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = jueguito_largo
+NAME = so_long
 
 SRCS = main_so_long.c so_long_utils.c map_control_functions.c perimeter_control_functions.c images_functions.c hooks_functions.c
 
