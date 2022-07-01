@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana < fmanzana@student.42malaga.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 12:36:02 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/20 14:13:03 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/04/20 16:31:02 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/04/26 20:23:09 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
 #include<string.h>
 
-char	*ft_strchr(const char *s, int c)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	while (*s)
+	size_t	srclen;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	srclen = 0;
+	while (src[srclen] != '\0')
+		srclen++;
+	while (dst[i] != '\0' && i < dstsize)
+		i++;
+	while (src[j] != '\0' && (i + j + 1) < dstsize)
 	{
-		if (*s == (unsigned char) c)
-			return ((char *) s);
-		s++;
+		dst[i + j] = src[j];
+		j++;
 	}
-	if ((unsigned char) c == '\0')
-		return ((char *) s);
-	return (0);
+	if (i < dstsize)
+		dst[i + j] = '\0';
+	return (i + srclen);
 }

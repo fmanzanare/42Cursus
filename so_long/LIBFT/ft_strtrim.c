@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana < fmanzana@student.42malaga.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 12:36:02 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/20 14:13:03 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/04/24 16:09:24 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/04/26 18:20:11 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
-#include<string.h>
+#include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	while (*s)
-	{
-		if (*s == (unsigned char) c)
-			return ((char *) s);
-		s++;
-	}
-	if ((unsigned char) c == '\0')
-		return ((char *) s);
-	return (0);
+	size_t	len;
+	char	*dst;
+
+	if (!s1 || !set)
+		return (0);
+	while (*s1 && ft_strchr(set, *s1) != 0)
+		s1++;
+	len = ft_strlen(s1);
+	while (len && s1[len - 1] && ft_strchr(set, s1[len - 1]) != 0)
+		len--;
+	dst = (char *)malloc(sizeof(char) * (len + 1));
+	if (!dst)
+		return (0);
+	ft_memcpy(dst, s1, len);
+	dst[len] = '\0';
+	return (dst);
 }

@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana < fmanzana@student.42malaga.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 12:36:02 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/20 14:13:03 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/04/20 12:17:46 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/04/26 20:22:23 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
 #include<string.h>
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	while (*s)
+	size_t	i;
+
+	i = 0;
+	if (!dst && !src)
+		return (0);
+	if (dst < src)
 	{
-		if (*s == (unsigned char) c)
-			return ((char *) s);
-		s++;
+		while (i < len)
+		{
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
 	}
-	if ((unsigned char) c == '\0')
-		return ((char *) s);
-	return (0);
+	else
+	{
+		while (len > 0)
+		{
+			((unsigned char *)dst)[len -1] = ((unsigned char *)src)[len -1];
+			len--;
+		}
+	}
+	return (dst);
 }

@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana < fmanzana@student.42malaga.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 12:36:02 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/20 14:13:03 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/04/20 10:51:30 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/04/26 20:22:00 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
-#include<string.h>
+#include<strings.h>
 
-char	*ft_strchr(const char *s, int c)
+void	ft_bzero(void *s, size_t n)
 {
-	while (*s)
+	char	*c;
+	size_t	i;
+
+	i = 0;
+	c = s;
+	while (i < n)
 	{
-		if (*s == (unsigned char) c)
-			return ((char *) s);
-		s++;
+		c[i] = '\0';
+		i++;
 	}
-	if ((unsigned char) c == '\0')
-		return ((char *) s);
-	return (0);
 }

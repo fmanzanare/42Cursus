@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana < fmanzana@student.42malaga.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 12:36:02 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/20 14:13:03 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/04/25 17:52:59 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/04/25 17:53:47 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
-#include<string.h>
+#include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_putchar_fd(char c, int fd)
 {
-	while (*s)
-	{
-		if (*s == (unsigned char) c)
-			return ((char *) s);
-		s++;
-	}
-	if ((unsigned char) c == '\0')
-		return ((char *) s);
-	return (0);
+	write(fd, &c, 1);
 }

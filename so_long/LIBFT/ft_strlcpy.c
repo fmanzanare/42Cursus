@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana < fmanzana@student.42malaga.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 12:36:02 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/20 14:13:03 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/04/20 15:56:54 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/04/26 20:22:36 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
 #include<string.h>
 
-char	*ft_strchr(const char *s, int c)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	while (*s)
+	size_t	i;
+	size_t	srcsize;
+
+	i = 0;
+	srcsize = 0;
+	while (src[srcsize] != '\0')
+		srcsize++;
+	if (dstsize != 0)
 	{
-		if (*s == (unsigned char) c)
-			return ((char *) s);
-		s++;
+		while (i < (dstsize - 1) && src[i] != '\0')
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	if ((unsigned char) c == '\0')
-		return ((char *) s);
-	return (0);
+	return (srcsize);
 }

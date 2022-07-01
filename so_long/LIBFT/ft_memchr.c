@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana < fmanzana@student.42malaga.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 12:36:02 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/20 14:13:03 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/04/21 18:55:29 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/04/26 20:24:36 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
 #include<string.h>
 
-char	*ft_strchr(const char *s, int c)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	while (*s)
+	size_t	i;
+
+	i = 0;
+	while (i < n)
 	{
-		if (*s == (unsigned char) c)
-			return ((char *) s);
-		s++;
+		if (((unsigned char *) s)[i] == (unsigned char) c)
+			return ((void *)(s + i));
+		i++;
 	}
-	if ((unsigned char) c == '\0')
-		return ((char *) s);
 	return (0);
 }
