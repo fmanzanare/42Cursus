@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 15:54:57 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/21 14:31:59 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/06/23 16:50:06 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/06/23 18:13:28 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,34 @@ void	init_controltab(t_controltab *map)
 	map->perimeter = 0;
 }
 
-int		perimeter_control(t_controltab *map, char *str)
+int	perimeter_control(t_controltab *map)
 {
 	int		perimeter_chkr;
 
 	init_controltab(map);
-	perimeter_chkr = columns_rows_and_check(map, str);
+	perimeter_chkr = columns_rows_and_check(map);
 	return (perimeter_chkr);
 }
 
-int		elements_control(t_controltab *map, char *str)
+int	elements_control(t_controltab *map)
 {
 	int		i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (map->str_map[i] != '\0')
 	{
-		if (str[i] == 'P')
+		if (map->str_map[i] == 'P')
 			map->player += 1;
-		else if (str[i] == 'C')
+		else if (map->str_map[i] == 'C')
 			map->collect += 1;
-		else if (str[i] == 'E')
+		else if (map->str_map[i] == 'E')
 			map->exit += 1;
 		i++;
 	}
-	
+
 	printf("Players = %i\n", map->player);
 	printf("Collectables = %i\n", map->collect);
 	printf("Exits = %i\n\n", map->exit);
-
 	if (map->player != 1)
 		return (1);
 	else if (map->collect < 1)

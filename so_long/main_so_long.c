@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/16 13:11:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/22 17:39:29 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/06/23 16:00:24 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/06/24 13:14:14 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,45 +26,50 @@ int		extension_tester(char *argv)
 	return (1);
 }
 
-int		main(int argc, char **argv)
+int		testers_function(t_controltab *map, int argc, char **argv)
 {
-	int				tester;
-	char			*str_map;
-	t_controltab	map;
-	t_data			data;
+	int		tester;
 
 	if (argc != 2)
 		return (1);
 	tester = extension_tester(argv[1]);
-	if (!tester)
-	{
-		printf("Buen nombre de mapa bro!\n");
-		str_map = ft_read_map(argv[1]);
-		printf("%s\n", str_map);
-	}
-	else
-	{
-		printf("Nombre de mapa failed!\n");
-		return (1);
-	}
-
-	tester = map_checker(&map, str_map);
 	if (tester == 1)
 	{
-		printf("Error en la composición del mapa!\n");
+		printf("Error en la extensión del mapa\n");
 		return (1);
 	}
-	else if (tester == 0)
-		printf("El mapa esta PERFE!\n");
-	
+	else
+		printf("Buen nombre de mapa bro!\n");
+	tester = map_checker(map);
+	if (tester == 1)
+	{
+		printf ("Error en la composición del mapa\n");
+		return (1);
+	}
+	else
+		printf("El mapa está perfe!\n");
+	return (0);
+}
+
+int		main (int argc, char **argv)
+{
+	t_data	data;
+
+	data.map.str_map = ft_read_map(argv[1]);
+	printf("%s\n", data.map.str_map);
+	if (testers_function(&data.map, argc, argv) == 1)
+		return (1);
+
 	data.mlx_ptr = mlx_init();
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HIGHT,"jueguito largo!");
-	
+	data.win_ptr = mlx_new_window(data.mlx_ptr, data.map.width * IMG_S,
+			data.map.hight * IMG_S, "jueguito_largo!");
+	printf("mlx_ptr = %p\n", data.mlx_ptr);
+	printf("win_ptr = %p\n", data.win_ptr);
+	printf("wall = %p\n", data.img.type.wall);
 	open_images(&data);
-	render_function(&data, str_map);
-	
+	pre_print_map(&data);
+//	close_images(&data);
 	mlx_loop(data.mlx_ptr);
-	close_images(&data);
 
 	return (0);
 }
