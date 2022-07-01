@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:53:31 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/24 15:40:18 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/07/01 19:08:54 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 # include<stdio.h>
 
 # define IMG_S 80
+
+enum e_keycode
+{
+	UP = 13,
+	LEFT = 0,
+	DOWN = 1,
+	RIGHT = 2,
+	ESC = 53,
+};
 
 typedef struct s_imgtype
 {
@@ -71,6 +80,6 @@ void	open_images(t_data *data);
 void	pre_print_map(t_data *data);
 void	print_map(t_data *data, int i, int j, int k);
 void	close_images(t_data *data);
-int		*close_window(int keycode, t_data *data);
+int		input(int keycode, void *ptr);
 
 #endif

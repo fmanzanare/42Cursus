@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:00:24 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/07/01 16:56:16 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:57:06 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		main (int argc, char **argv)
 	printf("wall = %p\n", data.img.type.wall);
 	open_images(&data);
 	pre_print_map(&data);
-//	mlx_key_hook(data.win_ptr, (*close_window)(27, &data), &data);
+	mlx_hook(data.win_ptr, 2, 0, input, &data);
 //	close_images(&data);
 	mlx_loop(data.mlx_ptr);
 
