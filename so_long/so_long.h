@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:53:31 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/05 13:05:03 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:52:26 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,10 @@ void	pre_print_map(t_data *data);
 void	print_map(t_data *data, int i, int j, int k);
 void	close_images(t_data *data);
 int		input(int keycode, void *ptr);
+void	find_pj_pos(t_data *data);
+void	move_pj_down(t_data *data);
+void	move_pj_up(t_data *data);
+void	move_pj_right(t_data *data);
+void	move_pj_left(t_data *data);
 
 #endif
