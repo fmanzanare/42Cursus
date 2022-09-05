@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:06:01 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/23 18:06:12 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:00:04 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_read_map(char *file)
 	return (str);
 }
 
-int		map_checker(t_controltab *map)
+int	map_checker(t_controltab *map)
 {
 	if (perimeter_control(map) == 1)
 		return (1);

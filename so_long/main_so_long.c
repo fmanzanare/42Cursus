@@ -6,13 +6,13 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:00:24 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/07/01 19:16:27 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:01:18 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int		extension_tester(char *argv)
+int	extension_tester(char *argv)
 {
 	int	map_name_len;
 
@@ -26,7 +26,7 @@ int		extension_tester(char *argv)
 	return (1);
 }
 
-int		testers_function(t_controltab *map, int argc, char **argv)
+int	testers_function(t_controltab *map, int argc, char **argv)
 {
 	int		tester;
 
@@ -51,7 +51,7 @@ int		testers_function(t_controltab *map, int argc, char **argv)
 	return (0);
 }
 
-int		main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
@@ -59,7 +59,6 @@ int		main (int argc, char **argv)
 	printf("%s\n", data.map.str_map);
 	if (testers_function(&data.map, argc, argv) == 1)
 		return (1);
-
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, data.map.width * IMG_S,
 			data.map.hight * IMG_S, "jueguito_largo!");
@@ -70,6 +69,5 @@ int		main (int argc, char **argv)
 	pre_print_map(&data);
 	mlx_hook(data.win_ptr, 2, 0, input, &data);
 	mlx_loop(data.mlx_ptr);
-
 	return (0);
 }
