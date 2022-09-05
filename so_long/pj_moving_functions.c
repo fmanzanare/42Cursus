@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 16:42:14 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/05 18:26:56 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:33:44 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	move_pj_right(t_data *data)
 			printf("%i\n", data->map.collect);
 		}
 		data->map.str_map[data->map.pj_pos] = '0';
-		data->map.str_map[i] = '0';
-		pre_print_map(data);
 		data->map.str_map[i] = 'P';
 		pre_print_map(data);
 	}
