@@ -6,17 +6,21 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 15:29:39 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/05 16:49:56 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:32:44 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	close_window(t_data *data)
-{	
-	close_images(data);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+int	close_window(void *data)
+{
+	t_data	*mlx;
+
+	mlx = data;
+	close_images(mlx);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	exit(0);
+	return (0);
 }
 
 int	input(int keycode, void *ptr)

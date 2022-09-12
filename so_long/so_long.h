@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:53:31 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/05 16:52:26 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:32:09 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include<mlx.h>
 # include"LIBFT/libft.h"
+# include"FT_PRINTF/ft_printf.h"
 # include<stdlib.h>
 # include<fcntl.h>
-# include<stdio.h>
 
 # define IMG_S 80
 
@@ -38,6 +38,7 @@ typedef struct s_imgtype
 	void	*player_1;
 	void	*player_2;
 	void	*exit;
+	void	*opened;
 }				t_imgtype;
 
 typedef struct s_img
@@ -54,9 +55,11 @@ typedef struct s_controltab
 	int		hight;
 	int		player;
 	int		pj_pos;
+	int		exit_pos;
 	int		collect;
 	int		exit;
 	int		perimeter;
+	int		moves_counter;
 }				t_controltab;
 
 typedef struct s_data
@@ -80,12 +83,15 @@ int		elements_control(t_controltab *map);
 void	open_images(t_data *data);
 void	pre_print_map(t_data *data);
 void	print_map(t_data *data, int i, int j, int k);
+void	print_map_2(t_data *data, int i, int j, int k);
 void	close_images(t_data *data);
 int		input(int keycode, void *ptr);
-void	find_pj_pos(t_data *data);
+int		close_window(void *data);
+void	find_pj_and_exit_pos(t_data *data);
 void	move_pj_down(t_data *data);
 void	move_pj_up(t_data *data);
 void	move_pj_right(t_data *data);
 void	move_pj_left(t_data *data);
+void	print_moves_counter(t_data *data);
 
 #endif

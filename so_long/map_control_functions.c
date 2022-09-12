@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:50:06 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/23 18:13:28 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:26:38 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_controltab(t_controltab *map)
 	map->collect = 0;
 	map->exit = 0;
 	map->perimeter = 0;
+	map->moves_counter = 0;
 }
 
 int	perimeter_control(t_controltab *map)
@@ -46,10 +47,6 @@ int	elements_control(t_controltab *map)
 			map->exit += 1;
 		i++;
 	}
-
-	printf("Players = %i\n", map->player);
-	printf("Collectables = %i\n", map->collect);
-	printf("Exits = %i\n\n", map->exit);
 	if (map->player != 1)
 		return (1);
 	else if (map->collect < 1)

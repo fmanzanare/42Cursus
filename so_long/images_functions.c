@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 18:15:57 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/06/24 13:14:27 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/12 11:26:49 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	open_images(t_data *data)
 			"sprites/player-2.xpm", &data->img.x, &data->img.y);
 	data->img.type.exit = mlx_xpm_file_to_image(data->mlx_ptr,
 			"sprites/exit.xpm", &data->img.x, &data->img.y);
+	data->img.type.opened = mlx_xpm_file_to_image(data->mlx_ptr,
+			"sprites/opened.xpm", &data->img.x, &data->img.y);
 }
 
 void	pre_print_map(t_data *data)

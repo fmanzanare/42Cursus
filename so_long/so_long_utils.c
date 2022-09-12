@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:06:01 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/05 17:00:04 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:35:43 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ char	*ft_read_map(char *file)
 	read(fd, str, i);
 	close(fd);
 	str[i] = '\0';
-
-	printf("String length = %i\n\n", i);
-
 	return (str);
 }
 
@@ -42,4 +39,9 @@ int	map_checker(t_controltab *map)
 	if (elements_control(map) == 1)
 		return (1);
 	return (0);
+}
+
+void	print_moves_counter(t_data *data)
+{
+	ft_printf("Moves = %i\n", data->map.moves_counter);
 }

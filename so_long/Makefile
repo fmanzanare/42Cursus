@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:37:23 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/05 16:50:33 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/12 13:00:07 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ OBJS = ${SRCS:.c=.o}
 MLX = mlx/libmlx.a
 
 LIBFT = LIBFT/libft.a
+
+FT_PRINTF = FT_PRINTF/libftprintf.a
 
 CC = gcc
 
@@ -34,8 +36,11 @@ $(MLX):		$(MLX)
 $(LIBFT):	$(LIBFT)
 			make -C ./LIBFT
 
-$(NAME):	${OBJS} $(MLX) $(LIBFT)
-			$(CC) $(OBJS) -Llibft -lft -Lmlx -lmlx -framework OpenGL -framework Appkit -o $(NAME)
+$(FT_PRINTF):	$(FT_PRINTF)
+			make -C ./FT_PRINTF/
+
+$(NAME):	${OBJS} $(MLX) $(LIBFT) $(FT_PRINTF)
+			$(CC) $(OBJS) -Lft_printf -lftprintf -Llibft -lft -Lmlx -lmlx -framework OpenGL -framework Appkit -o $(NAME)
 			
 %.o: %.c
 			$(CC) $(CFLAGS) $< -o $@

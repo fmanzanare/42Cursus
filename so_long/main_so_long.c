@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:00:24 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/05 17:01:18 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:26:16 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,15 @@ int	testers_function(t_controltab *map, int argc, char **argv)
 	tester = extension_tester(argv[1]);
 	if (tester == 1)
 	{
-		printf("Error en la extensión del mapa\n");
+		ft_printf("Error\n");
 		return (1);
 	}
-	else
-		printf("Buen nombre de mapa bro!\n");
 	tester = map_checker(map);
 	if (tester == 1)
 	{
-		printf ("Error en la composición del mapa\n");
+		ft_printf ("Error\n");
 		return (1);
 	}
-	else
-		printf("El mapa está perfe!\n");
 	return (0);
 }
 
@@ -56,17 +52,14 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	data.map.str_map = ft_read_map(argv[1]);
-	printf("%s\n", data.map.str_map);
 	if (testers_function(&data.map, argc, argv) == 1)
 		return (1);
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, data.map.width * IMG_S,
-			data.map.hight * IMG_S, "jueguito_largo!");
-	printf("mlx_ptr = %p\n", data.mlx_ptr);
-	printf("win_ptr = %p\n", data.win_ptr);
-	printf("wall = %p\n", data.img.type.wall);
+			data.map.hight * IMG_S, "so_long");
 	open_images(&data);
 	pre_print_map(&data);
+	mlx_hook(data.win_ptr, 17, 0, close_window, &data);
 	mlx_hook(data.win_ptr, 2, 0, input, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
