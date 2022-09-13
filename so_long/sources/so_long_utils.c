@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:06:01 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/13 09:14:32 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/13 11:06:13 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,35 @@ int	map_checker(t_controltab *map)
 		return (1);
 	if (elements_control(map) == 1)
 		return (1);
+	return (0);
+}
+
+int	lines_len_control(t_data *data)
+{
+	int	first_line_len;
+	int	i;
+	int	j;
+
+	first_line_len = 0;
+	while (data->map.str_map[first_line_len] != '\n')
+	{
+		first_line_len++;
+	}
+	i = 0;
+	while (data->map.str_map[i] != '\0')
+	{
+		j = 0;
+		while (data->map.str_map[i] != '\n')
+		{
+			i++;
+			j++;
+		}
+		if (j != first_line_len)
+		{
+			return (1);
+		}
+		i++;
+	}
 	return (0);
 }
 

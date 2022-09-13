@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:00:24 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/13 09:57:08 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:42:52 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	testers_function(t_controltab *map, int argc, char **argv)
 	tester = extension_tester(argv[1]);
 	if (tester == 1)
 	{
-		ft_printf("Error\n");
+		ft_printf("Error\nNombre de mapa erróneo\n");
 		return (1);
 	}
 	tester = map_checker(map);
 	if (tester == 1)
 	{
-		ft_printf ("Error\n");
+		ft_printf ("Error\nComposición de mapa errónea\n");
 		return (1);
 	}
 	return (0);
@@ -57,6 +57,12 @@ int	main(int argc, char **argv)
 	if (testers_function(&data.map, argc, argv) == 1)
 	{
 		free(data.map.str_map);
+		return (1);
+	}
+	if (lines_len_control(&data) == 1)
+	{
+		free(data.map.str_map);
+		ft_printf("Error\nComposición de mapa errónea\n");
 		return (1);
 	}
 	data.mlx_ptr = mlx_init();

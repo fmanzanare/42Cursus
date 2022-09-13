@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:53:31 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/12 20:03:14 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:32:48 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	first_row_ctrl(t_controltab *map, int x, int y);
 void	mid_rows_ctrl(t_controltab *map, int x, int y);
 void	last_row_ctrl(t_controltab *map, int x, int i);
 int		perimeter_checker(t_controltab *map, int y);
+int		lines_len_control(t_data *data);
 int		elements_control(t_controltab *map);
 void	open_images(t_data *data);
 void	pre_print_map(t_data *data);
