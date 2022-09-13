@@ -6,15 +6,21 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/01 15:37:23 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/12 13:00:07 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/13 09:54:46 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRCS = main_so_long.c so_long_utils.c map_control_functions.c perimeter_control_functions.c images_functions.c hooks_functions.c pj_moving_functions.c
+SRCS = main_so_long.c\
+		so_long_utils.c\
+		map_control_functions.c\
+		perimeter_control_functions.c\
+		images_functions.c\
+		hooks_functions.c\
+		pj_moving_functions.c
 
-OBJS = ${SRCS:.c=.o}
+OBJS = $(addprefix $(OBJDIR), ${SRCS:.c=.o})
 
 MLX = mlx/libmlx.a
 
@@ -24,32 +30,44 @@ FT_PRINTF = FT_PRINTF/libftprintf.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -Imlx -c
+CFLAGS = -Wall -Wextra -Werror -Imlx
 
-RM = rm -f
+OBJDIR = ./objects/
 
-all: 		$(NAME)
+SRCDIR = ./sources/
 
-$(MLX):		$(MLX)
-			make -C ./mlx
+all: 		obj $(NAME)
 
-$(LIBFT):	$(LIBFT)
-			make -C ./LIBFT
+obj:
+			@mkdir -p $(OBJDIR)
 
-$(FT_PRINTF):	$(FT_PRINTF)
-			make -C ./FT_PRINTF/
+$(MLX):
+			@make -C ./includes/mlx
+
+$(LIBFT):
+			@make -C ./includes/LIBFT
+
+$(FT_PRINTF):
+			@make -C ./includes/FT_PRINTF
 
 $(NAME):	${OBJS} $(MLX) $(LIBFT) $(FT_PRINTF)
-			$(CC) $(OBJS) -Lft_printf -lftprintf -Llibft -lft -Lmlx -lmlx -framework OpenGL -framework Appkit -o $(NAME)
+			@$(CC) $(OBJS) -L./includes/ft_printf -lftprintf -L./includes/libft -lft -L./includes/mlx -lmlx -framework OpenGL -framework Appkit -o $(NAME)
+			@echo "Compliación realizada!"
 			
-%.o: %.c
-			$(CC) $(CFLAGS) $< -o $@
+$(OBJDIR)%.o: $(SRCDIR)%.c
+			@$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-			${RM} ${OBJS}
+			@rm -rf $(OBJDIR)
+			@make -C ./includes/FT_PRINTF clean
+			@make -C ./includes/LIBFT clean
+			@make -C ./includes/mlx clean
 
 fclean:		clean
-			${RM} ${NAME}
+			@rm -f ${NAME}
+			@make -C ./includes/FT_PRINTF fclean
+			@make -C ./includes/LIBFT fclean
+			@echo "Limpieza TOTAL done!"
 
 re:			fclean all
 
