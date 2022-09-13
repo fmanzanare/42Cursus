@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 16:00:24 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/13 10:42:52 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:40:17 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	data.map.str_map = ft_read_map(argv[1]);
+	if (!data.map.str_map)
+		return (0);
 	if (testers_function(&data.map, argc, argv) == 1)
 	{
 		free(data.map.str_map);
