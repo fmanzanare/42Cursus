@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 12:44:58 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/14 17:54:54 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/14 19:09:12 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void	ft_cleanmem(char **mem);
 void	ft_newmemalloc(char **mem);
 char	*ft_get_line(char **mem);
 int		ft_linelen(char *ptr);
+void	ft_free_str(void **ptr);
 
 #endif

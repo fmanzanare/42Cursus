@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_free_str.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 12:40:05 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/14 18:32:15 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/09/14 19:06:50 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/09/14 19:08:01 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_free_str(void **ptr)
 {
-	char	*str1 = "Hola Mundo! ";
-	int		i;
-
-	i = 0;
-	while (str1[i] != '\0')
-	{
-		write(1, str1[i], 1);
-		i++;
-	}
-	return (0);
+	free(*ptr);
+	*ptr = NULL;
 }

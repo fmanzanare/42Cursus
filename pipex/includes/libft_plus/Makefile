@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 12:47:02 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/13 13:05:23 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/14 19:09:32 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC = ft_isalpha.c \
 		get_next_line.c \
 		get_next_line_bonus.c \
 		get_next_line_utils.c \
+		ft_free_str.c \
 
 OBJ = $(SRC:.c=.o)
 
