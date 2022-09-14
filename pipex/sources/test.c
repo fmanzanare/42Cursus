@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:05 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/14 13:32:36 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:39:11 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,14 @@
 
 int	main(void)
 {
-	char	*str = "Hola Mundo";
+	char	*str1 = "Hola Mundo! ";
+	char	*str2 = "Como va eso?";
+	char	*dst;
 	
-	printf("len str: %li\n", ft_strlen(str));
+	printf("str 1: %s\n", str1);
+	printf("str 2: %s\n", str2);
+	dst = ft_strjoin(str1, str2);
+	printf("dst: %s\n", dst);
+	free(dst);
 	return (0);
 }
