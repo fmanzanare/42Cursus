@@ -1,21 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_pipex.c                                       :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 12:40:05 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/14 12:46:33 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/09/14 12:45:11 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/09/14 12:46:18 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
-
-int	main(int argc, char **argv, char **envp)
-{
-
-
-
-	return (0);
-}
+#include "./libft_plus/libft.h"
