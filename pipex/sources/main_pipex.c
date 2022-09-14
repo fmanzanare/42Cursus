@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:05 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/14 13:06:46 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:20:47 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	main(void)
 {
-	printf("Hello World\n");
+	int	i = 50;
+
+	ft_printf("Hello World %i\n", i);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 12:54:56 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/14 13:14:47 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/14 13:26:22 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,10 @@ OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 
 LIBFT = ./includes/libft_plus/libft.a
 
-all:		obj $(NAME) mv_obj
+all:		obj $(NAME) 
 
-obj:
-			@mkdir -p $(OBJDIR)
-
-mv_obj:
+obj:		$(OBJS)
+			@mkdir $(OBJDIR)
 			@mv $(OBJS) $(OBJDIR)
 
 $(OBJS):	$(SRCS)
@@ -35,6 +33,7 @@ $(OBJS):	$(SRCS)
 
 $(NAME):	$(OBJS) $(LIBFT)
 			@$(CC) $(CFLAGS) $(OBJS) -L./includes/libft_plus -lft -o $(NAME)
+			@mv $(OBJS) $(OBJDIR)
 			@echo "Compilación done!"
 
 $(LIBFT):

@@ -6,13 +6,14 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 12:44:58 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/14 12:41:08 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:19:51 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include"./ft_printf/ft_printf.h"
 # include<stdio.h>
 # include<stdlib.h>
 # include<string.h>
