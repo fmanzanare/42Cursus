@@ -5,50 +5,50 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/14 11:08:13 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/14 12:14:32 by fmanzana         ###   ########.fr        #
+#    Created: 2022/09/14 12:54:56 by fmanzana          #+#    #+#              #
+#    Updated: 2022/09/14 13:14:47 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-SRCDIR = ./sources/
-SRCS = test.c \
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra
+
+SRCS = ./sources/main_pipex.c \
 
 OBJDIR = ./objects/
-OBJS = $(addprefix $(OBJDIR), $(SRCS):.c=.o))
+OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 
 LIBFT = ./includes/libft_plus/libft.a
-LIBFT_DIR = ./includes/libft_plus/
-LIBFT_LINK = -L ./includes/libft_plus -l ft
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g
-
-all: obj $(LIBFT) $(NAME)
+all:		obj $(NAME) mv_obj
 
 obj:
 			@mkdir -p $(OBJDIR)
 
-$(OBJDIR)%.o: $(SRCDIR)%.c
-			$(CC) $(CFLAGS) -I $(LIBFT_DIR) -g -o $@ -c $<
+mv_obj:
+			@mv $(OBJS) $(OBJDIR)
+
+$(OBJS):	$(SRCS)
+			@$(CC) $(CFLAGS) -c $(SRCS)
+
+$(NAME):	$(OBJS) $(LIBFT)
+			@$(CC) $(CFLAGS) $(OBJS) -L./includes/libft_plus -lft -o $(NAME)
+			@echo "Compilación done!"
 
 $(LIBFT):
-			@make -C $(LIBFT_DIR)
-
-$(NAME): $(OBJS)
-			@$(CC) $(OBJS) $(LIBFT_LINK) -o $(NAME)
-			@echo "Compilación done!"
+			@make -C ./includes/libft_plus
 
 clean:
 			@rm -rf $(OBJDIR)
-			@make -C $(LIBFT_DIR) clean
+			@make -C ./includes/libft_plus clean
 
-fclean:
+fclean:		clean
 			@rm -f $(NAME)
-			@make -C $(LIBFT_DIR) fclean
+			@make -C ./includes/libft_plus fclean
 			@echo "Limpieza TOTAL done!"
 
-re: fclean all
+re:			fclean, all
 
-.PHONY: all, obj, clean, fclean, re
+.PHONY: all, clean, fclean, re

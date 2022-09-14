@@ -6,16 +6,14 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:05 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/14 12:46:33 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:06:46 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+int	main(void)
 {
-
-
-
+	printf("Hello World\n");
 	return (0);
 }
