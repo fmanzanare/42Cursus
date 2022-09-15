@@ -6,13 +6,14 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/14 20:17:38 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/15 13:51:29 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-char	**path_arrayer(char **envp)
+// Función para montar el array de los "PATHS".
+static char	**path_arrayer(char **envp)
 {
 	char	**path_str;
 	char	*tmp;
@@ -33,43 +34,49 @@ char	**path_arrayer(char **envp)
 	while (path_str[i])
 	{
 		path_str[i] = ft_strjoin(path_str[i], "/");
+		if (!path_str)
+			ft_free_str((void **)&path_str);
 		i++;
 	}
 	return (path_str);
 }
 
-void	error_controller(int argc, char **argv, char **envp)
+// Función de gestión de errores.
+static int	*error_ctr(t_data *data, int argc, char **argv)
 {
-	char	**paths_str;
-	int		input_fd;
-	int		output_fd;
-
 	if (argc != 5)
 	{
 		ft_putstr_fd("Wrong number of arguments.\n", 2);
 		exit(1);
 	}
-	input_fd = open(argv[1], O_RDONLY);
-	if (input_fd < 0)
+	data->io_fds[0] = open(argv[1], O_RDONLY);
+	if (data->io_fds[0] < 0)
 	{
 		ft_putstr_fd("Wrong file.\n", 2);
 		exit(1);
 	}
-	output_fd = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (output_fd < 0)
+	data->io_fds[1] = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (data->io_fds[1] < 0)
 	{
 		ft_putstr_fd("Issues opening outfile.\n", 2);
-		exit(1);	
+		exit(1);
 	}
+	return (io_fds);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	**paths_str;
+	t_data	data;
 
-	error_controller(argc, argv, envp);
-	paths_str = path_arrayer(envp);
-	// llamar a función PIPEX, con procesos, etc.
-	ft_free_str((void**)&paths_str);
+	data->io_fds = error_ctr(&data, argc, argv);
+	data.paths_arr = path_arrayer(envp);
+	if (pipe(data->fds) < 0)
+	{
+		ft_str_fd("Error creating pipe.\n", 2);
+		exit(1);
+	}
+	data.cmd1_path = cmd_mkr(&data, 2);
+	data.cmd2_path = cmd_mkr(&data, 3);
+	pipex(data, argv, envp);
 	return (0);
 }
