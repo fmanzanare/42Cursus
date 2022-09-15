@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/15 13:51:29 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:22:49 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	**path_arrayer(char **envp)
 }
 
 // Función de gestión de errores.
-static int	*error_ctr(t_data *data, int argc, char **argv)
+static void	error_ctr(t_data *data, int argc, char **argv)
 {
 	if (argc != 5)
 	{
@@ -61,22 +61,23 @@ static int	*error_ctr(t_data *data, int argc, char **argv)
 		ft_putstr_fd("Issues opening outfile.\n", 2);
 		exit(1);
 	}
-	return (io_fds);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
-	data->io_fds = error_ctr(&data, argc, argv);
+	error_ctr(&data, argc, argv);
 	data.paths_arr = path_arrayer(envp);
-	if (pipe(data->fds) < 0)
+	if (pipe(data.fds) < 0)
 	{
-		ft_str_fd("Error creating pipe.\n", 2);
+		ft_putstr_fd("Error creating pipe.\n", 2);
 		exit(1);
 	}
-	data.cmd1_path = cmd_mkr(&data, 2);
-	data.cmd2_path = cmd_mkr(&data, 3);
-	pipex(data, argv, envp);
+	data.cmd1_path = cmd_mkr(&data, argv, 2);
+	data.cmd1_arr = ft_split(argv[2], ' ');
+	data.cmd2_path = cmd_mkr(&data, argv, 3);
+	data.cmd2_arr = ft_split(argv[3], ' ');
+	pipex(&data, envp);
 	return (0);
 }

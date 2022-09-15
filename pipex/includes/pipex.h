@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:45:11 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/15 13:54:02 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:23:10 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ typedef struct s_data
 
 char	*cmd_fdr(t_data *data, char **argv, int cmd_pos);
 char	*cmd_mkr(t_data *data, char **argv, int cmd_pos);
-void	pipex(t_data *data, char **argv, char **envp);
+void	pipex(t_data *data, char **envp);
 
 #endif

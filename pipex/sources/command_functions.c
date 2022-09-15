@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/15 13:49:25 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:54:36 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //Funciones para encontrar el "path" del comando requerido.
 char	*cmd_fdr(t_data *data, char **argv, int cmd_pos)
 {
-	char	*cmd;
+	char	**cmd;
 	char	*cmd_path;
 	int		i;
 
@@ -23,18 +23,18 @@ char	*cmd_fdr(t_data *data, char **argv, int cmd_pos)
 	cmd = ft_split(argv[cmd_pos], ' ');
 	if (!cmd)
 	{
-		ft_str_fd("Error spliting commands.\n", 2);
+		ft_putstr_fd("Error spliting commands.\n", 2);
 		exit (1);
 	}
-	while (data->path_arr[i])
+	while (data->paths_arr[i])
 	{
-		cmd_path = ft_strjoin(data->path_arr[i], cmd);
+		cmd_path = ft_strjoin(data->paths_arr[i], cmd[0]);
 		if (!cmd_path)
 			return (NULL);
 		if (!access(cmd_path, F_OK | X_OK))
 			return (cmd_path);
 		free(cmd_path);
-		data->path_arr[i++];
+		i++;
 	}
 	return (NULL);
 }
@@ -51,10 +51,4 @@ char	*cmd_mkr(t_data *data, char **argv, int cmd_pos)
 		exit(127);
 	}
 	return (cmd_path);
-}
-
-// Función para montar el array del comando para la funcion "execve"
-char	**cmd_arrayer(t_data *data, char **argv, int cmd_pos)
-{
-
 }
