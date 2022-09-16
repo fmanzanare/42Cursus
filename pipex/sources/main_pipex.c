@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/15 18:22:49 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:08:30 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	**path_arrayer(char **envp)
 		return (0);
 	path_str = ft_split(tmp, ':');
 	ft_free_str((void **)&tmp);
-	while (path_str[i])
+	while (path_str[i])	
 	{
 		path_str[i] = ft_strjoin(path_str[i], "/");
 		if (!path_str)

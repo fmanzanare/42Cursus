@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 12:54:56 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/15 13:46:43 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/16 12:08:06 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,6 @@ fclean:		clean
 			@make -C ./includes/libft_plus fclean
 			@echo "Limpieza TOTAL done!"
 
-re:			fclean, all
+re:			fclean all
 
 .PHONY: all, clean, fclean, re
