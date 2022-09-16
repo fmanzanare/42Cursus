@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:45:11 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/15 18:23:10 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:58:05 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ typedef struct s_data
 	char	*cmd1_path;
 	char	**cmd2_arr;
 	char	*cmd2_path;
-	int		*fds;
-	int		*io_fds;
-	int		*stdio_fds;
-	int		*childids;
+	int		fds[2];
+	int		in_fd;
+	int		out_fd;
+	int		stdin_fd;
+	int		stdout_fd;
+	int		child1_id;
+	int		child2_id;
 }				t_data;
 
 char	*cmd_fdr(t_data *data, char **argv, int cmd_pos);

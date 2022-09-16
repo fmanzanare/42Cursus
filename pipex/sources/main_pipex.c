@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/16 12:08:30 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/16 12:57:13 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ static void	error_ctr(t_data *data, int argc, char **argv)
 		ft_putstr_fd("Wrong number of arguments.\n", 2);
 		exit(1);
 	}
-	data->io_fds[0] = open(argv[1], O_RDONLY);
-	if (data->io_fds[0] < 0)
+	data->in_fd = open(argv[1], O_RDONLY);
+	if (data->in_fd < 0)
 	{
 		ft_putstr_fd("Wrong file.\n", 2);
 		exit(1);
 	}
-	data->io_fds[1] = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (data->io_fds[1] < 0)
+	data->out_fd = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (data->out_fd < 0)
 	{
 		ft_putstr_fd("Issues opening outfile.\n", 2);
 		exit(1);
