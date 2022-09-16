@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 12:54:56 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/16 12:08:06 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/16 13:43:07 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,10 @@ obj:		$(OBJS)
 			@mv $(OBJS) $(OBJDIR)
 
 $(OBJS):	$(SRCS)
-			@$(CC) $(CFLAGS) -c $(SRCS)
+			@$(CC) $(CFLAGS) -g -c $(SRCS)
 
 $(NAME):	$(OBJS) $(LIBFT)
-			@$(CC) $(CFLAGS) $(addprefix $(OBJDIR), $(OBJS)) $(LIBFT_LINK) $(FT_PRINTF_LINK) -o $(NAME)
+			@$(CC) $(CFLAGS) $(addprefix $(OBJDIR), $(OBJS)) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME)
 			@echo "Compilación done!"
 
 $(LIBFT):

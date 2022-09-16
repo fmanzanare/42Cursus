@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/16 12:57:13 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/16 15:22:30 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	**path_arrayer(char **envp)
 		return (0);
 	path_str = ft_split(tmp, ':');
 	ft_free_str((void **)&tmp);
-	while (path_str[i])	
+	while (path_str[i])
 	{
 		path_str[i] = ft_strjoin(path_str[i], "/");
 		if (!path_str)
@@ -63,10 +63,16 @@ static void	error_ctr(t_data *data, int argc, char **argv)
 	}
 }
 
+void leaks(void)
+{
+	system("leaks -q pipex");
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
+	atexit(leaks);
 	error_ctr(&data, argc, argv);
 	data.paths_arr = path_arrayer(envp);
 	if (pipe(data.fds) < 0)
