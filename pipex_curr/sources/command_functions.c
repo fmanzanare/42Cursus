@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/17 12:35:01 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/17 12:49:13 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,19 @@ void	cmd_controller(t_data *data, char **argv, int cmd_pos)
 	if (cmd_pos == 2)
 	{
 		if (!cmd1_fdr(data, argv, cmd_pos))
-			ft_errexit(data, "Issues finding command 1\n");
+		{
+			ft_putstr_fd(argv[2], 2);
+			ft_putstr_fd(": Command not found!\n", 2);
+			exit(1);
+		}
 	}
 	else if (cmd_pos == 3)
 	{
 		if (!cmd2_fdr(data, argv, cmd_pos))
-			ft_errexit(data, "Issues finding command 1\n");
+		{
+			ft_putstr_fd(argv[3], 2);
+			ft_putstr_fd(": Command not found!\n", 2);
+			exit(1);
+		}
 	}
 }
