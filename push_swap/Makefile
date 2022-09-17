@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/17 11:29:11 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/17 13:11:58 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/17 13:18:07 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ./sources/xxxxxx.c\
+SRCS = ./sources/*.c\
 
 OBJDIR = ./objects/
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
