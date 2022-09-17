@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmanzana < fmanzana@student.42malaga.com  +#+  +:+       +#+        */
+/*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 12:44:58 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/13 11:25:05 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/16 13:29:44 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include"./ft_printf/ft_printf.h"
 # include<stdio.h>
 # include<stdlib.h>
 # include<string.h>
 # include<ctype.h>
 # include<unistd.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 typedef struct s_list
 {
@@ -78,5 +79,6 @@ void	ft_cleanmem(char **mem);
 void	ft_newmemalloc(char **mem);
 char	*ft_get_line(char **mem);
 int		ft_linelen(char *ptr);
+void	ft_free_str(void **ptr);
 
 #endif
