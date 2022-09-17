@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/17 11:29:11 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/17 13:14:43 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/17 13:16:31 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,13 @@ NAME = -->PROGRAM_NANE<--
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ./sources/-->FILE_NAME.c<-- \ || ./sources/*.c
+#Forma 1 de añadir los archivos sources:
+SRCS = ./sources/-->FILE_NAME.c<-- \
 		./sources/-->FILE_NAME.c<-- \
 		./sources/-->FILE_NAME.c<-- \
 		./sources/-->FILE_NAME.c<-- \
+#Forma 2 de añadir los archivos sources:
+SRCS = ./sources/*.c
 
 OBJDIR = ./objects/
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
