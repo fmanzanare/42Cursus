@@ -1,34 +1,55 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/17 11:29:11 by fmanzana          #+#    #+#              #
+#    Updated: 2022/09/17 11:49:12 by fmanzana         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = push_swap
 
-SRCS = 
-
-OBJS = ${SRCS:.c=.o}
-
-LIBFT = LIBFT/libft.a
-
 CC = gcc
+CFLAGS = -Wall -Werror -Wextra
 
-CFLAGS = -Wall -Wextra -Werror
+SRCS = ./sources/xxxxxxxx.c\
 
-RM = rm -f
+OBJDIR = ./objects/
+OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 
-all:		$(NAME)
+LIBFT = ./includes/libft_plus/libft.a
+LIBFT_LINK = -L./includes/libft_plus -lft
+FT_PRINTF_LINK = -l./includes/libft_plus/ft_printf -lftprintf
 
-$(LIBFT):	$(LIBFT)
-		make -C ./LIBFT
+all:		obj $(NAME)
+
+obj:
+			@rm -rf $(OBJDIR)
+			@mkdir $(OBJDIR)
+
+$(OBJS):	$(SRCS)
+			@$(CC) $(CFLAGS) -g -c $(SRCS)
 
 $(NAME):	$(OBJS) $(LIBFT)
-		$(CC) $(OBJS) -Llibft -lft -o $(NAME)
+			@mv $(OBJS) $(OBJSDIR)
+			@$(CC) $(CFLAGS) $(addprefix $(OBJDIR), $(OBJS)) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME)
+			@echo "Compilación done!"
 
-%.o: %.c
-		$(CC) $(CFLAGS) $< -o $@
+$(LIBFT):
+			@make -C ./includes/libft_plus
 
 clean:
-		$(RM) $(OBJS)
+			@rm -rf $(OBJDIR)
+			@make -C ./includes/libft_plus clean
 
 fclean:		clean
-		$(RM) $(NAME)
+			@rm -f $(NAME)
+			@make -C ./includes/libft_plus fclean
+			@echo "Limpieza TOTAL done!"
 
-re:		fclean all
+re:			fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, obj, clean, fclean, re

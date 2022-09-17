@@ -1,32 +1,33 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile-Prototype                                 :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/14 12:54:56 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/17 11:47:44 by fmanzana         ###   ########.fr        #
+#    Created: 2022/09/17 11:29:11 by fmanzana          #+#    #+#              #
+#    Updated: 2022/09/17 11:51:54 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = pipex
+NAME = -->PROGRAM_NANE<--
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ./sources/main_pipex.c \
-		./sources/processes_functions.c \
-		./sources/command_functions.c \
+SRCS = ./sources/-->FILE_NAME.c<-- \
+		./sources/-->FILE_NAME.c<-- \
+		./sources/-->FILE_NAME.c<-- \
+		./sources/-->FILE_NAME.c<-- \
 
 OBJDIR = ./objects/
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 
 LIBFT = ./includes/libft_plus/libft.a
 LIBFT_LINK = -L./includes/libft_plus -lft
-FT_PRINTF_LINK = -L./includes/libft_plus/ft_printf -lftprintf
+FT_PRINTF_LINK = -l./includes/libft_plus/ft_printf -lftprintf
 
-all:		obj $(NAME) 
+all:		obj $(NAME)
 
 obj:
 			@rm -rf $(OBJDIR)
@@ -36,7 +37,7 @@ $(OBJS):	$(SRCS)
 			@$(CC) $(CFLAGS) -g -c $(SRCS)
 
 $(NAME):	$(OBJS) $(LIBFT)
-			@mv $(OBJS) $(OBJDIR)
+			@mv $(OBJS) $(OBJSDIR)
 			@$(CC) $(CFLAGS) $(addprefix $(OBJDIR), $(OBJS)) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME)
 			@echo "Compilación done!"
 

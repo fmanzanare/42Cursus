@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fmanzana < fmanzana@student.42malaga.com  +#+  +:+       +#+         #
+#    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/23 12:47:02 by fmanzana          #+#    #+#              #
-#    Updated: 2022/06/20 14:07:51 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/14 19:09:32 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ft_isalpha.c \
+SRC = ft_isalpha.c \
 		ft_isdigit.c \
 		ft_isalnum.c \
 		ft_isascii.c \
@@ -48,8 +48,12 @@ SRCS = ft_isalpha.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
+		get_next_line.c \
+		get_next_line_bonus.c \
+		get_next_line_utils.c \
+		ft_free_str.c \
 
-OBJS = $(SRCS:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 BONUS = ft_lstnew.c \
 		ft_lstadd_front.c \
@@ -61,25 +65,24 @@ BONUS = ft_lstnew.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
 
-BONUS_OBJS = $(BONUS:.c=.o)
+BONUS_OBJ = $(BONUS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@ar rcs $(NAME) $(OBJS)
-	@echo "Librería done"
+$(NAME):
+	@make -C ./ft_printf
+	@gcc $(CFLAGS) -c $(SRC) $(BONUS)
+	@ar rcs $(NAME) $(OBJ) $(BONUS_OBJ)
+	@echo "Librería LIBFT done!"
 
 clean:
-	@rm -f $(OBJS) $(BONUS_OBJS)
-	@echo "Limpieza .o done"
+	@rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Limpieza libft.a done"
+	@make -C ./ft_printf fclean
+	@echo "Limpieza LIBFT done!"
 
 re: fclean all
 
-bonus:	$(OBJS) $(BONUS_OBJS)
-	ar crs $(NAME) $(OBJS) $(BONUS_OBJS)
-
-.PHONY: all clean fclean bonus re
+.PHONY: all clean fclean re
