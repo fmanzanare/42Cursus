@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/16 18:44:51 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/17 11:20:50 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_freeyer(t_data *data)
 {
-	ft_free_str((void **)data->paths_arr);
-	ft_free_str((void **)data->cmd1_arr);
-	ft_free_str((void **)data->cmd2_arr);
+	ft_free_str((void **)&data->paths_arr);
+	ft_free_str((void **)&data->cmd1_arr);
+	ft_free_str((void **)&data->cmd2_arr);
 	free(data->cmd1_path);
 	free(data->cmd2_path);
 }
