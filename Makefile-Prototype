@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/17 11:29:11 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/17 11:51:54 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/17 13:14:43 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = -->PROGRAM_NANE<--
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ./sources/-->FILE_NAME.c<-- \
+SRCS = ./sources/-->FILE_NAME.c<-- \ || ./sources/*.c
 		./sources/-->FILE_NAME.c<-- \
 		./sources/-->FILE_NAME.c<-- \
 		./sources/-->FILE_NAME.c<-- \
