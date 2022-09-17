@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/16 18:44:29 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/17 12:37:54 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ static void	error_ctr(t_data *data, int argc, char **argv)
 	}
 }
 
-void	leaks(void)
+/*void	leaks(void)
 {
 	system("leaks -q pipex");
-}
+}*/
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
-	atexit(leaks);
+//	atexit(leaks);
 	error_ctr(&data, argc, argv);
 	if (path_arrayer(&data, envp))
 	{
@@ -87,9 +87,6 @@ int	main(int argc, char **argv, char **envp)
 		pipex(&data, envp);
 	}
 	else
-	{
-		ft_putstr_fd("Issues creating PATH array!.\n", 2);
-		exit(1);
-	}
+		ft_errexit(&data, "Issues creating PATH array!.\n");
 	return (0);
 }

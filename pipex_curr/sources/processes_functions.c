@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 10:51:00 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/16 16:17:20 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/17 12:40:02 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ static void	child1(t_data *data, char **envp)
 	dup2(data->in_fd, 0);
 	close(data->in_fd);
 	if (execve(data->cmd1_path, data->cmd1_arr, envp) < 0)
-	{
-		ft_putstr_fd("Command not found!\n", 2);
-		exit(1);
-	}
+		ft_errexit(data, "Command not found!\n");
 }
 
 static void	child2(t_data *data, char **envp)
@@ -34,10 +31,7 @@ static void	child2(t_data *data, char **envp)
 	dup2(data->out_fd, 1);
 	close(data->out_fd);
 	if (execve(data->cmd2_path, data->cmd2_arr, envp) < 0)
-	{
-		ft_putstr_fd("Command not found!\n", 2);
-		exit(1);
-	}
+		ft_errexit(data, "Command not found!\n");
 }
 
 static void	parent(t_data *data)
@@ -60,18 +54,12 @@ void	pipex(t_data *data, char **envp)
 	data->stdout_fd = dup(1);
 	data->child1_id = fork();
 	if (data->child1_id < 0)
-	{
-		ft_putstr_fd("Failed making first child!\n", 2);
-		exit (1);
-	}
+		ft_errexit(data, "Failed making first child!\n");
 	else if (data->child1_id == 0)
 		child1(data, envp);
 	data->child2_id = fork();
 	if (data->child2_id < 0)
-	{
-		ft_putstr_fd("Failed making second child!\n", 2);
-		exit (1);
-	}
+		ft_errexit(data, "Failed making second child!\n");
 	else if (data->child2_id == 0)
 		child2(data, envp);
 	parent(data);

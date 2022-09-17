@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/17 11:20:50 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/17 12:35:01 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ void	ft_freeyer(t_data *data)
 	free(data->cmd2_path);
 }
 
+void	ft_errexit(t_data *data, char *str)
+{
+	ft_putstr_fd(str, 2);
+	ft_freeyer(data);
+	exit(1);
+}
+
 //Funciones para encontrar el "path" del comando requerido.
 static char	*cmd2_fdr(t_data *data, char **argv, int cmd_pos)
 {
@@ -30,10 +37,7 @@ static char	*cmd2_fdr(t_data *data, char **argv, int cmd_pos)
 	i = 0;
 	cmd = ft_split(argv[cmd_pos], ' ');
 	if (!cmd)
-	{
-		ft_putstr_fd("Error spliting commands.\n", 2);
-		exit (1);
-	}
+		ft_errexit(data, "Error spliting commands.\n");
 	while (data->paths_arr[i])
 	{
 		data->cmd2_path = ft_strjoin(data->paths_arr[i], cmd[0]);
@@ -42,7 +46,7 @@ static char	*cmd2_fdr(t_data *data, char **argv, int cmd_pos)
 		if (!access(data->cmd2_path, F_OK | X_OK))
 		{
 			ft_free_str((void **)&cmd);
-			return (0);
+			return (data->cmd2_path);
 		}
 		free(data->cmd2_path);
 		i++;
@@ -59,10 +63,7 @@ static char	*cmd1_fdr(t_data *data, char **argv, int cmd_pos)
 	i = 0;
 	cmd = ft_split(argv[cmd_pos], ' ');
 	if (!cmd)
-	{
-		ft_putstr_fd("Error spliting commands.\n", 2);
-		exit (1);
-	}
+		ft_errexit(data, "Error spliting commands.\n");
 	while (data->paths_arr[i])
 	{
 		data->cmd1_path = ft_strjoin(data->paths_arr[i], cmd[0]);
@@ -71,7 +72,7 @@ static char	*cmd1_fdr(t_data *data, char **argv, int cmd_pos)
 		if (!access(data->cmd1_path, F_OK | X_OK))
 		{
 			ft_free_str((void **)&cmd);
-			return (0);
+			return (data->cmd1_path);
 		}
 		free(data->cmd1_path);
 		i++;
@@ -84,28 +85,12 @@ void	cmd_controller(t_data *data, char **argv, int cmd_pos)
 {
 	if (cmd_pos == 2)
 	{
-		if (cmd1_fdr(data, argv, cmd_pos))
-		{
-			ft_putstr_fd("Issues finding command 1\n", 2);
-			exit(1);
-		}
+		if (!cmd1_fdr(data, argv, cmd_pos))
+			ft_errexit(data, "Issues finding command 1\n");
 	}
 	else if (cmd_pos == 3)
 	{
-		if (cmd2_fdr(data, argv, cmd_pos))
-		{
-			ft_putstr_fd("Issues finding command 2\n", 2);
-			exit(1);
-		}
+		if (!cmd2_fdr(data, argv, cmd_pos))
+			ft_errexit(data, "Issues finding command 1\n");
 	}
 }
-
-/*	cmd_path = cmd_fdr(data, argv, cmd_pos);
-	if (!cmd_path)
-	{
-		ft_putstr_fd(argv[2], 2);
-		ft_putstr_fd(": Command not found.\n", 2);
-		exit(127);
-	}
-	return (cmd_path);
-}*/
