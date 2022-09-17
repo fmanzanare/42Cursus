@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/17 11:29:11 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/17 11:49:12 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/09/17 13:11:58 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,14 @@ NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ./sources/xxxxxxxx.c\
+SRCS = ./sources/xxxxxx.c\
 
 OBJDIR = ./objects/
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 
 LIBFT = ./includes/libft_plus/libft.a
 LIBFT_LINK = -L./includes/libft_plus -lft
-FT_PRINTF_LINK = -l./includes/libft_plus/ft_printf -lftprintf
+FT_PRINTF_LINK = -L./includes/libft_plus/ft_printf -lftprintf
 
 all:		obj $(NAME)
 
@@ -34,7 +34,7 @@ $(OBJS):	$(SRCS)
 			@$(CC) $(CFLAGS) -g -c $(SRCS)
 
 $(NAME):	$(OBJS) $(LIBFT)
-			@mv $(OBJS) $(OBJSDIR)
+			@mv $(OBJS) $(OBJDIR)
 			@$(CC) $(CFLAGS) $(addprefix $(OBJDIR), $(OBJS)) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME)
 			@echo "Compilación done!"
 
