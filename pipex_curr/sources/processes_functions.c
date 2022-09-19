@@ -6,11 +6,18 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 10:51:00 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/17 12:40:02 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:48:35 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+
+void	ft_errexit(t_data *data, char *str)
+{
+	ft_putstr_fd(str, 2);
+	ft_freeyer(data);
+	exit(1);
+}
 
 static void	child1(t_data *data, char **envp)
 {

@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/17 12:37:54 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:50:13 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ static char	**path_arrayer(t_data *data, char **envp)
 	ft_free_str((void **)&tmp);
 	while (data->paths_arr[i])
 	{
+		tmp = data->paths_arr[i];
 		data->paths_arr[i] = ft_strjoin(data->paths_arr[i], "/");
+		free(tmp);
 		if (!data->paths_arr)
 			ft_free_str((void **)&data->paths_arr);
 		i++;
@@ -62,16 +64,16 @@ static void	error_ctr(t_data *data, int argc, char **argv)
 	}
 }
 
-/*void	leaks(void)
+void	leaks(void)
 {
 	system("leaks -q pipex");
-}*/
+}
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
-//	atexit(leaks);
+	atexit(leaks);
 	error_ctr(&data, argc, argv);
 	if (path_arrayer(&data, envp))
 	{

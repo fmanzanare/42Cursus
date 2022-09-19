@@ -6,26 +6,34 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/17 12:49:13 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:55:58 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
+static void	ft_freearr(char	**arr)
+{
+	int		i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+}
+
 void	ft_freeyer(t_data *data)
 {
+	ft_freearr(data->paths_arr);
 	ft_free_str((void **)&data->paths_arr);
+	ft_freearr(data->cmd1_arr);
 	ft_free_str((void **)&data->cmd1_arr);
+	ft_freearr(data->cmd2_arr);
 	ft_free_str((void **)&data->cmd2_arr);
 	free(data->cmd1_path);
 	free(data->cmd2_path);
-}
-
-void	ft_errexit(t_data *data, char *str)
-{
-	ft_putstr_fd(str, 2);
-	ft_freeyer(data);
-	exit(1);
 }
 
 //Funciones para encontrar el "path" del comando requerido.
@@ -45,12 +53,14 @@ static char	*cmd2_fdr(t_data *data, char **argv, int cmd_pos)
 			return (NULL);
 		if (!access(data->cmd2_path, F_OK | X_OK))
 		{
+			ft_freearr(cmd);
 			ft_free_str((void **)&cmd);
 			return (data->cmd2_path);
 		}
 		free(data->cmd2_path);
 		i++;
 	}
+	ft_freearr(cmd);
 	ft_free_str((void **)&cmd);
 	return (NULL);
 }
@@ -71,12 +81,14 @@ static char	*cmd1_fdr(t_data *data, char **argv, int cmd_pos)
 			return (NULL);
 		if (!access(data->cmd1_path, F_OK | X_OK))
 		{
+			ft_freearr(cmd);
 			ft_free_str((void **)&cmd);
 			return (data->cmd1_path);
 		}
 		free(data->cmd1_path);
 		i++;
 	}
+	ft_freearr(cmd);
 	ft_free_str((void **)&cmd);
 	return (NULL);
 }
