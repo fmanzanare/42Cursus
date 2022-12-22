@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/17 11:29:11 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/17 13:18:07 by fmanzana         ###   ########.fr        #
+#    Updated: 2022/12/22 14:54:16 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ./sources/*.c\
+SRCS = ./src/*.c\
 
 OBJDIR = ./objects/
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
@@ -43,6 +43,7 @@ $(LIBFT):
 
 clean:
 			@rm -rf $(OBJDIR)
+			@rm -f ./*.o
 			@make -C ./includes/libft_plus clean
 
 fclean:		clean
