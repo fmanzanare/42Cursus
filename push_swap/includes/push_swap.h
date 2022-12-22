@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/22 16:23:00 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:29:32 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,23 @@
 
 # include"./libft_plus/libft.h"
 
-// typedef struct s_list
-// {
-//     int              num;
-//     struct s_list    *next;
-// } t_list;
+typedef struct s_stack
+{
+	int				num;
+	struct s_stack	*next;
+	struct s_stack	*prev;
+} t_stack;
 
-int ft_error(void);
+typedef struct s_data
+{
+	char			**num_mtrx;
+	int				argc;
+	t_stack			*stk_a;
+	t_stack			*stk_b;
+} t_data;
+
+int ft_error(t_data *data);
+void init_data(t_data *data, int args ,char **argv);
+void init_stack(t_stack *stk);
 
 #endif
