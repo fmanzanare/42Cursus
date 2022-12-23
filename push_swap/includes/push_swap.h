@@ -6,14 +6,14 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 17:05:46 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:56:36 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include"./libft_plus/libft.h"
+# include "./libft_plus/libft.h"
 # include <limits.h>
 
 typedef struct s_stack
@@ -27,16 +27,22 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+/* Initialization */
 t_stack		*new_node(int num);
 t_stack		*run_to_bottom(t_stack *stk);
 void		stk_add_bottom(t_stack **stk, t_stack *new);
 t_stack		*fill_stk_a(t_stack *stk, char **args, int num_counter);
 t_stack		*args_splitter_and_stk_filler(char **args);
+/* Stacks Utils */
+void		assign_indexes(t_stack *stk, int stk_len);
 int			stack_length(t_stack *stk);
 int			check_sorted(t_stack *stk);
+/* Push-Swap Movements */
+/* Swap */
 void		sa_act(t_stack *stk);
 void		sb_act(t_stack *stk);
 void		ss_act(t_stack *stk_a, t_stack *stk_b);
+/* Utils */
 long int	ft_atoli_errexit(char *str);
 void		ft_errexit(void);
 

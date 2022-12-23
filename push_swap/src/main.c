@@ -6,25 +6,25 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:25:34 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 17:05:55 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:10:07 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// static void print_stack(t_stack *stk)
-// {
-// 	while (stk)
-// 	{
-// 		ft_printf("Number = %i\n", stk->num);
-// 		stk = stk->next;
-// 	}
-// }
+static void print_stack(t_stack *stk)
+{
+	while (stk)
+	{
+		ft_printf("Number = %i\n", stk->num);
+		ft_printf("Index = %i\n", stk->index);
+		stk = stk->next;
+	}
+}
 
 static void	algo_chooser(t_stack **stk_a, t_stack **stk_b, int stk_len)
 {
 	stk_b = NULL;
-
 	if (stk_len == 2 && !check_sorted(*stk_a))
 		sa_act(*stk_a);
 }
@@ -36,18 +36,20 @@ static void	algo_chooser(t_stack **stk_a, t_stack **stk_b, int stk_len)
 
 int	main(int argc, char **args)
 {
-	// atexit(leaks);
 	t_stack		*stk_a;
 	t_stack		*stk_b;
 	int			stk_len;
 
+	// atexit(leaks);
 	if (argc <= 1)
-		ft_errexit();
+		return (1);
 	stk_b = NULL;
 	stk_a = args_splitter_and_stk_filler(args);
 	stk_len = stack_length(stk_a);
+	assign_indexes(stk_a, (stk_len + 1));
+	print_stack(stk_a);
 	algo_chooser(&stk_a, &stk_b, stk_len);
-	if(check_sorted(stk_a))
+	if (check_sorted(stk_a))
 		ft_printf("The stack is sorted!\n");
 	else
 		ft_printf("The stack is NOT sorted\n");
