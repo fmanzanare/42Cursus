@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:01:37 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 18:39:37 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:19:37 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,10 @@ void	assign_indexes(t_stack *stk, int stk_len)
 			max->index = stk_len;
 	}
 }
+
+// t_stack	*bottom_node(t_stack *stk)
+// {
+// 	if (!stk)
+// 		return NULL;
+// 	while (stk)
+// }
