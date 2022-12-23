@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:01:37 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 18:33:13 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:39:37 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	stack_length(t_stack *stk)
 void	assign_indexes(t_stack *stk, int stk_len)
 {
 	t_stack	*tmp;
-	t_stack *max;
+	t_stack	*max;
 	int		val;
 
 	while (--stk_len > 0)
