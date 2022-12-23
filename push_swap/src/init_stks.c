@@ -6,12 +6,15 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:49:46 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 14:24:43 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:37:39 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+/*
+* Creates a new node of the list (stack)
+*/
 t_stack	*new_node(int num)
 {
 	t_stack	*new;
@@ -29,13 +32,19 @@ t_stack	*new_node(int num)
 	return (new);
 }
 
-t_stack		*run_to_bottom(t_stack *stk)
+/*
+* Moves the point to the end of the list (stack bottom)
+*/
+t_stack	*run_to_bottom(t_stack *stk)
 {
 	while (stk && stk->next != NULL)
 		stk = stk->next;
 	return (stk);
 }
 
+/*
+* Adds a new node at the end of the list (stack bottom)
+*/
 void	stk_add_bottom(t_stack **stk, t_stack *new)
 {
 	t_stack		*tail;
@@ -51,6 +60,11 @@ void	stk_add_bottom(t_stack **stk, t_stack *new)
 	tail->next = new;
 }
 
+/*
+* Fill the list with the received arguments.
+* If "args" is the first number it fills the first position (stack head).
+* The rest of the arguments filled on the following positions (stack tail).
+*/
 t_stack	*fill_stk_a(t_stack *stk, char **args, int num_counter)
 {
 	long int	num;
@@ -72,7 +86,12 @@ t_stack	*fill_stk_a(t_stack *stk, char **args, int num_counter)
 	return (stk);
 }
 
-t_stack	*args_splitter(char **args)
+/*
+* Splits the received "args" by ' '.
+* It sends each array of strings to the fill_stk_a function.
+* If "args" contains strings and array of strings mixed, it splits it by ' '.
+*/
+t_stack	*args_splitter_and_stk_filler(char **args)
 {
 	t_stack	*stk;
 	char	**tmp;
