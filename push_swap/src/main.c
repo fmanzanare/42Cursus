@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:25:34 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 18:22:04 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:37:33 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	main(int argc, char **args)
 	stk_b = NULL;
 	stk_a = args_splitter_and_stk_filler(args);
 	stk_len = stack_length(stk_a);
-	assign_indexes(stk_a, (stk_len + 1));
 	check_duplicates(stk_a);
+	assign_indexes(stk_a, (stk_len + 1));
 	print_stack(stk_a);
 	algo_chooser(&stk_a, &stk_b, stk_len);
 	if (check_sorted(stk_a))

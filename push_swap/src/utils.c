@@ -6,14 +6,15 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:34:55 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 18:32:52 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:36:17 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
 /*
-* Converts the received "string" to "int" and checks if it has any digit on it.
+* Converts the received "string" to "long int".
+* It also checks if it has any digits on it.
 * If no digits are found, it goes directly to Error Exit.
 * @param str String to convert into "int"
 */

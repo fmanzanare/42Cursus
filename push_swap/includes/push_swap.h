@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 18:21:51 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:34:41 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-/* Initialization */
+/* Stacks Initialization */
 t_stack		*new_node(int num);
 t_stack		*run_to_bottom(t_stack *stk);
 void		stk_add_bottom(t_stack **stk, t_stack *new);
