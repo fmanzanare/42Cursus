@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 17:56:36 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:21:51 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void		sa_act(t_stack *stk);
 void		sb_act(t_stack *stk);
 void		ss_act(t_stack *stk_a, t_stack *stk_b);
 /* Utils */
+void		check_duplicates(t_stack *stk);
 long int	ft_atoli_errexit(char *str);
 void		ft_errexit(void);
 

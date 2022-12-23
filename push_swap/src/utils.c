@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:34:55 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 18:15:54 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:32:52 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,32 @@ long int	ft_atoli_errexit(char *str)
 		ft_errexit();
 	num *= sign;
 	return (num);
+}
+
+/*
+* Goes through the numbers contained into stack to check duplicates.
+* If duplicates are found it goes directly to Error exit.
+* @param stk Stack to be checked
+*/
+void	check_duplicates(t_stack *stk)
+{
+	t_stack	*fixed;
+	t_stack	*nav;
+
+	if (!stk)
+		return ;
+	fixed = stk;
+	while (fixed->next)
+	{
+		nav = fixed->next;
+		while (nav)
+		{
+			if (nav->num == fixed->num)
+				ft_errexit();
+			nav = nav->next;
+		}
+		fixed = fixed->next;
+	}
 }
 
 void	ft_errexit(void)
