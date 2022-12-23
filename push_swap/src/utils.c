@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:34:55 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 13:50:42 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:25:20 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /*
 * Converts the received "string" to "int" and checks if it has any digit on it.
-* If no digits are found, it gois directly to Error Exit.
+* If no digits are found, it goes directly to Error Exit.
+* @param str String to convert into "int"
 */
 long int	ft_atoli_errexit(char *str)
 {
@@ -48,6 +49,6 @@ long int	ft_atoli_errexit(char *str)
 void	ft_errexit(void)
 {
 	ft_printf("Error\n");
-	// Funciones para liberar memoria!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// Free memory functions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:49:46 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 14:37:39 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:31:01 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /*
 * Creates a new node of the list (stack)
+* @param num "int" to be assing to the stack
 */
 t_stack	*new_node(int num)
 {
@@ -34,6 +35,7 @@ t_stack	*new_node(int num)
 
 /*
 * Moves the point to the end of the list (stack bottom)
+* @param stk stack to run through
 */
 t_stack	*run_to_bottom(t_stack *stk)
 {
@@ -44,6 +46,8 @@ t_stack	*run_to_bottom(t_stack *stk)
 
 /*
 * Adds a new node at the end of the list (stack bottom)
+* @param stk stack to work with
+* @param new New node to be added
 */
 void	stk_add_bottom(t_stack **stk, t_stack *new)
 {
@@ -64,6 +68,9 @@ void	stk_add_bottom(t_stack **stk, t_stack *new)
 * Fill the list with the received arguments.
 * If "args" is the first number it fills the first position (stack head).
 * The rest of the arguments filled on the following positions (stack tail).
+* @param stk stack to be filled
+* @param args Arguments received to be converted into "int" through ft_atoi
+* @param num_counter Counter to control the number of "int" to be added
 */
 t_stack	*fill_stk_a(t_stack *stk, char **args, int num_counter)
 {
@@ -90,6 +97,7 @@ t_stack	*fill_stk_a(t_stack *stk, char **args, int num_counter)
 * Splits the received "args" by ' '.
 * It sends each array of strings to the fill_stk_a function.
 * If "args" contains strings and array of strings mixed, it splits it by ' '.
+* @param args Arguments received into main function to be splitted
 */
 t_stack	*args_splitter_and_stk_filler(char **args)
 {
