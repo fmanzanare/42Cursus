@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:34:55 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 13:00:04 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 13:50:42 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 * Converts the received "string" to "int" and checks if it has any digit on it.
 * If no digits are found, it gois directly to Error Exit.
 */
-int	ft_atoi_errexit(char *str)
+long int	ft_atoli_errexit(char *str)
 {
-	unsigned int		num;
+	long int			num;
 	int					sign;
 	int					digit_found;
 

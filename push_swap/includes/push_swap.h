@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 12:53:27 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/23 14:22:01 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 # define PUSH_SWAP_H
 
 # include"./libft_plus/libft.h"
+# include <limits.h>
 
 typedef struct s_stack
 {
 	int				num;
+	int				index;
+	int				pos;
+	int				target;
+	int				cost_a;
+	int				cost_b;
 	struct s_stack	*next;
-	struct s_stack	*prev;
 }	t_stack;
 
-typedef struct s_data
-{
-	char			**num_mtrx;
-	int				argc;
-	t_stack			*stk_a;
-	t_stack			*stk_b;
-}	t_data;
-
-int		ft_error(t_data *data);
-void	init_data(t_data *data, int args, char **argv);
-void	init_stack(t_stack *stk);
-int		ft_atoi_errexit(char *str);
-void	ft_errexit(void);
+t_stack		*new_node(int num);
+t_stack		*run_to_bottom(t_stack *stk);
+void		stk_add_bottom(t_stack **stk, t_stack *new);
+t_stack		*fill_stk_a(t_stack *stk, char **args, int num_counter);
+t_stack		*args_splitter(char **args);
+long int	ft_atoli_errexit(char *str);
+void		ft_errexit(void);
 
 #endif
