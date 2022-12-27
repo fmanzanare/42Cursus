@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position_calc.c                                    :+:      :+:    :+:   */
+/*   position_and_cost_calc.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:57:36 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 14:41:07 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:26:14 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 * @param t_idx Target index
 * @param t_pos Target position to be returned and assigned
 */
-static int		target_calc(t_stack **stk_a, int b_idx, int t_idx, int t_pos)
+static int	target_calc(t_stack **stk_a, int b_idx, int t_idx, int t_pos)
 {
 	t_stack		*tmp;
 
@@ -53,7 +53,7 @@ static int		target_calc(t_stack **stk_a, int b_idx, int t_idx, int t_pos)
 * Assigns the current position to the elements of the Stack
 * @param stk Stack to work with
 */
-static void		assign_pos(t_stack **stk)
+static void	assign_pos(t_stack **stk)
 {
 	t_stack	*tmp;
 	int		pos;
@@ -89,4 +89,61 @@ void	assing_target_pos(t_stack **stk_a, t_stack **stk_b)
 		tmp_b->target = t_pos;
 		tmp_b = tmp_b->next;
 	}
+}
+
+/*
+* Calculates the cost of placing the item on top of Stack B
+* Also calculates the cost of moving the item on top of Stack A
+* Takes into consideration if it is over or under the half of the stack
+* @param stk_a Stack A
+* @param stk_b Stack B
+*/
+void	cost_calc(t_stack **stk_a, t_stack **stk_b)
+{
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
+	int		a_len;
+	int		b_len;
+
+	tmp_a = *stk_a;
+	tmp_b = *stk_b;
+	a_len = stack_length(tmp_a);
+	b_len = stack_length(tmp_b);
+	while (tmp_b)
+	{
+		tmp_b->cost_b = tmp_b->pos;
+		if (tmp_b->pos > b_len / 2)
+			tmp_b->cost_b = (b_len - tmp_b->pos) * -1;
+		tmp_b->cost_a = tmp_b->target;
+		if (tmp_b->target > a_len / 2)
+			tmp_b->cost_a = (a_len - tmp_b->target) * -1;
+		tmp_b = tmp_b->next;
+	}
+}
+
+/*
+* Looks for the cheapest element to be moved from Stack B on top of Stack A
+* @param stk_a Stack A
+* @param stk_b Stack B
+*/
+void	calc_cheapest_move(t_stack **stk_a, t_stack **stk_b)
+{
+	t_stack	*tmp;
+	int		min;
+	int		cost_a;
+	int		cost_b;
+
+	tmp = *stk_b;
+	min = INT_MIN;
+	while (tmp)
+	{
+		if (abs_value(tmp->cost_a) + abs_value(tmp->cost_b) < abs_value(min))
+		{
+			min = abs_value(tmp->cost_a) + abs_value(tmp->cost_b);
+			cost_a = tmp->cost_a;
+			cost_b = tmp->cost_b;
+		}
+		tmp = tmp->next;
+	}
+	moves(stk_a, stk_b, cost_a, cost_b);
 }

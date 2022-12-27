@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:14:05 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 13:26:25 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:20:50 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 */
 static void	push(t_stack **stk_src, t_stack *stk_dst)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	if (!*stk_src)
 		return ;

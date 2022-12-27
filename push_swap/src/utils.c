@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:34:55 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/23 18:36:17 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:19:55 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,17 @@ void	check_duplicates(t_stack *stk)
 		}
 		fixed = fixed->next;
 	}
+}
+
+/*
+* Returns the absolute value of a number
+* @param num Number to work with
+*/
+int	abs_value(int num)
+{
+	if (num < 0)
+		num *= -1;
+	return (num);
 }
 
 void	ft_errexit(void)

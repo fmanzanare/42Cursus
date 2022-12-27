@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 14:11:29 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:23:36 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,13 @@ t_stack		*before_bottom_node(t_stack *stk);
 /* Utils */
 void		check_duplicates(t_stack *stk);
 long int	ft_atoli_errexit(char *str);
+int			abs_value(int num);
 void		ft_errexit(void);
-/* Positions Calculator */
+/* Positions and Cost Calculator */
 void		assing_target_pos(t_stack **stk_a, t_stack **stk_b);
+void		cost_calc(t_stack **stk_a, t_stack **stk_b);
+/* Movements */
+void		moves(t_stack **stk_a, t_stack **stk_b, int cost_a, int cost_b);
 /* Push-Swap Movements */
 /* Swap */
 void		sa_act(t_stack *stk);
@@ -65,6 +69,5 @@ void		pb_act(t_stack **stk_b, t_stack **stk_a);
 /* Small Sort */
 void		small_sort(t_stack *stk);
 /* Large Sort */
-
 
 #endif

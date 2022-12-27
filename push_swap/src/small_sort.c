@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 11:34:43 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 12:13:28 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:21:03 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 * Looks for the highest index within the stack
 * @param stk Stack to work with
 */
-static int		max_index_finder(t_stack *stk)
+static int	max_index_finder(t_stack *stk)
 {
 	int		max;
 
