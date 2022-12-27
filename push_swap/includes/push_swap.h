@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 11:15:12 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 12:13:18 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,19 @@ void		sa_act(t_stack *stk);
 void		sb_act(t_stack *stk);
 void		ss_act(t_stack *stk_a, t_stack *stk_b);
 /* Rotate */
-void		ra_act(*stk);
-void		rb_act(*stk);
-void		rr_act(*stk_a, *stk_b);
+void		ra_act(t_stack **stk);
+void		rb_act(t_stack **stk);
+void		rr_act(t_stack **stk_a, t_stack **stk_b);
 /* Reverse Rotate */
-void		rra_act(t_stack *stk);
-void		rrb_act(t_stack *stk);
-void		rrr_act(t_stack *stk_a, t_stack *stk_b);
+void		rra_act(t_stack **stk);
+void		rrb_act(t_stack **stk);
+void		rrr_act(t_stack **stk_a, t_stack **stk_b);
 /* Utils */
 void		check_duplicates(t_stack *stk);
 long int	ft_atoli_errexit(char *str);
 void		ft_errexit(void);
+/* Algorithms */
+/* Small Sort */
+void		small_sort(t_stack *stk);
 
 #endif

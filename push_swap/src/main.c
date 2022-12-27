@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:25:34 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 10:34:26 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 12:16:21 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 static void print_stack(t_stack *stk)
 {
-	while (stk)
+	t_stack *tmp;
+
+	tmp = stk;
+	while (tmp)
 	{
-		ft_printf("Number = %i\n", stk->num);
-		ft_printf("Index = %i\n", stk->index);
-		stk = stk->next;
+		ft_printf("Number = %i\n", tmp->num);
+		ft_printf("Index = %i\n", tmp->index);
+		tmp = tmp->next;
 	}
 }
 
@@ -27,6 +30,8 @@ static void	algo_chooser(t_stack **stk_a, t_stack **stk_b, int stk_len)
 	stk_b = NULL;
 	if (stk_len == 2 && !check_sorted(*stk_a))
 		sa_act(*stk_a);
+	else if (stk_len == 3)
+		small_sort(*stk_a);
 }
 
 // void leaks(void)
