@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 12:13:18 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 14:11:29 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ int			stack_length(t_stack *stk);
 int			check_sorted(t_stack *stk);
 t_stack		*bottom_node(t_stack *stk);
 t_stack		*before_bottom_node(t_stack *stk);
+/* Utils */
+void		check_duplicates(t_stack *stk);
+long int	ft_atoli_errexit(char *str);
+void		ft_errexit(void);
+/* Positions Calculator */
+void		assing_target_pos(t_stack **stk_a, t_stack **stk_b);
 /* Push-Swap Movements */
 /* Swap */
 void		sa_act(t_stack *stk);
@@ -52,12 +58,13 @@ void		rr_act(t_stack **stk_a, t_stack **stk_b);
 void		rra_act(t_stack **stk);
 void		rrb_act(t_stack **stk);
 void		rrr_act(t_stack **stk_a, t_stack **stk_b);
-/* Utils */
-void		check_duplicates(t_stack *stk);
-long int	ft_atoli_errexit(char *str);
-void		ft_errexit(void);
+/* Push */
+void		pa_act(t_stack **stk_a, t_stack **stk_b);
+void		pb_act(t_stack **stk_b, t_stack **stk_a);
 /* Algorithms */
 /* Small Sort */
 void		small_sort(t_stack *stk);
+/* Large Sort */
+
 
 #endif

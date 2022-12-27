@@ -6,25 +6,20 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:25:34 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 12:16:21 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 13:16:36 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void print_stack(t_stack *stk)
-{
-	t_stack *tmp;
-
-	tmp = stk;
-	while (tmp)
-	{
-		ft_printf("Number = %i\n", tmp->num);
-		ft_printf("Index = %i\n", tmp->index);
-		tmp = tmp->next;
-	}
-}
-
+/*
+* Chooses the algorith to use acording to the stack length
+* Small Sort for stack length = 3
+* Long Sort for stack length > 3
+* @param stk_a Stack A
+* @param stk_b Stack B
+* @param stk_len Stack A length
+*/
 static void	algo_chooser(t_stack **stk_a, t_stack **stk_b, int stk_len)
 {
 	stk_b = NULL;
@@ -53,11 +48,6 @@ int	main(int argc, char **args)
 	stk_len = stack_length(stk_a);
 	check_duplicates(stk_a);
 	assign_indexes(stk_a, (stk_len + 1));
-	print_stack(stk_a);
 	algo_chooser(&stk_a, &stk_b, stk_len);
-	if (check_sorted(stk_a))
-		ft_printf("The stack is sorted!\n");
-	else
-		ft_printf("The stack is NOT sorted\n");
 	return (0);
 }
