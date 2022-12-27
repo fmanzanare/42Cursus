@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 17:55:46 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:33:01 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void		rrb_act(t_stack **stk);
 void		rrr_act(t_stack **stk_a, t_stack **stk_b);
 /* Push */
 void		pa_act(t_stack **stk_a, t_stack **stk_b);
-void		pb_act(t_stack **stk_b, t_stack **stk_a);
+void		pb_act(t_stack **stk_a, t_stack **stk_b);
 /* Algorithms */
 /* Small Sort */
 void		small_sort(t_stack *stk);

@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:39:58 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 17:50:11 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 18:55:29 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	rev_rotate(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 * @param cost_a Cost of placing in "pos" on Stack A
 * @param cost_b Cost of placing in "pos" on Stack B
 */
-static void	rotate(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
+static void	rotate_both(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 {
 	while (*cost_a > 0 && *cost_b > 0)
 	{
@@ -102,7 +102,7 @@ void	moves(t_stack **stk_a, t_stack **stk_b, int cost_a, int cost_b)
 	if (cost_a < 0 && cost_b < 0)
 		rev_rotate(stk_a, stk_b, &cost_a, &cost_b);
 	else if (cost_a > 0 && cost_b > 0)
-		rotate(stk_a, stk_b, &cost_a, &cost_b);
+		rotate_both(stk_a, stk_b, &cost_a, &cost_b);
 	rotate_a(stk_a, &cost_a);
 	rotate_b(stk_b, &cost_b);
 	pa_act(stk_a, stk_b);

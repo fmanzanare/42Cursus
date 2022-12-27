@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:14:05 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 17:51:19 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:32:55 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ static void	push(t_stack **stk_src, t_stack **stk_dst)
 {
 	t_stack	*tmp;
 
-	if (!*stk_src)
+	if (*stk_src == NULL)
 		return ;
 	tmp = (*stk_src)->next;
 	(*stk_src)->next = *stk_dst;
 	*stk_dst = *stk_src;
-	(*stk_src) = tmp;
+	*stk_src = tmp;
 }
 
 /*
-* Puts the top element of Stack A on top of Stack B
+* Puts the top element of Stack B on top of Stack A
 * @param stk_a Stack A
 * @param stk_b Stack B
 */
@@ -41,11 +41,11 @@ void	pa_act(t_stack **stk_a, t_stack **stk_b)
 }
 
 /*
-* Puts the top element of Stack B on top of Stack A
+* Puts the top element of Stack A on top of Stack B
 * @param stk_b Stack B
 * @param stk_a Stack A
 */
-void	pb_act(t_stack **stk_b, t_stack **stk_a)
+void	pb_act(t_stack **stk_a, t_stack **stk_b)
 {
 	push(stk_a, stk_b);
 	ft_printf("pb\n");

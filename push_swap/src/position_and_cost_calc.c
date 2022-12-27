@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:57:36 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 17:37:40 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 18:37:52 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	assign_pos(t_stack **stk)
 	while (tmp)
 	{
 		tmp->pos = pos;
-		pos++;
 		tmp = tmp->next;
+		pos++;
 	}
 }
 
@@ -134,7 +134,7 @@ void	calc_cheapest_move(t_stack **stk_a, t_stack **stk_b)
 	int		cost_b;
 
 	tmp = *stk_b;
-	min = INT_MIN;
+	min = INT_MAX;
 	while (tmp)
 	{
 		if (abs_value(tmp->cost_a) + abs_value(tmp->cost_b) < abs_value(min))
