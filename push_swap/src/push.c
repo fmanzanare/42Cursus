@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:14:05 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 16:20:50 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:51:19 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 * @param stk_src Stack Source
 * @param stk_dst Stack Dest
 */
-static void	push(t_stack **stk_src, t_stack *stk_dst)
+static void	push(t_stack **stk_src, t_stack **stk_dst)
 {
 	t_stack	*tmp;
 
 	if (!*stk_src)
 		return ;
 	tmp = (*stk_src)->next;
-	(*stk_src)->next = stk_dst;
+	(*stk_src)->next = *stk_dst;
 	*stk_dst = *stk_src;
 	(*stk_src) = tmp;
 }

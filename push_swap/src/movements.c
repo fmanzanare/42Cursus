@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:39:58 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 17:24:38 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:50:11 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void	rev_rotate(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 {
 	while (*cost_a < 0 && *cost_b < 0)
 	{
-		*cost_a++;
-		*cost_b++;
+		(*cost_a)++;
+		(*cost_b)++;
 		rrr_act(a, b);
 	}
 }
@@ -40,8 +40,8 @@ static void	rotate(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 {
 	while (*cost_a > 0 && *cost_b > 0)
 	{
-		*cost_a--;
-		*cost_b--;
+		(*cost_a)--;
+		(*cost_b)--;
 		rr_act(a, b);
 	}
 }
@@ -58,12 +58,12 @@ static void	rotate_a(t_stack **a, int *cost_a)
 		if (*cost_a > 0)
 		{
 			ra_act(a);
-			*cost_a--;
+			(*cost_a)--;
 		}
 		else if (*cost_a < 0)
 		{
 			rra_act(a);
-			*cost_a++;
+			(*cost_a)++;
 		}
 	}
 }
@@ -80,12 +80,12 @@ static void	rotate_b(t_stack **b, int *cost_b)
 		if (*cost_b > 0)
 		{
 			rb_act(b);
-			*cost_b--;
+			(*cost_b)--;
 		}
 		else if (*cost_b < 0)
 		{
 			rrb_act(b);
-			*cost_b++;
+			(*cost_b)++;
 		}
 	}
 }

@@ -6,26 +6,11 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:01:37 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 11:09:52 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:40:54 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-/*
-* Checks if the stack is sorted
-* @param stk stack to check
-*/
-int	check_sorted(t_stack *stk)
-{
-	while (stk->next != NULL)
-	{
-		if (stk->num > stk->next->num)
-			return (0);
-		stk = stk->next;
-	}
-	return (1);
-}
 
 /*
 * Measures the lenght of the list (stack)
@@ -102,4 +87,30 @@ t_stack	*before_bottom_node(t_stack *stk)
 	while (stk && stk->next && stk->next->next)
 		stk = stk->next;
 	return (stk);
+}
+
+/*
+* Looks for the lowest index within the Stack and returns its position
+* @param stk Stack to work with
+*/
+int	min_index_pos(t_stack **stk)
+{
+	t_stack	*tmp;
+	int		min_index;
+	int		min_pos;
+
+	tmp = *stk;
+	min_index = INT_MAX;
+	assign_pos(stk);
+	min_pos = tmp->pos;
+	while (tmp)
+	{
+		if (tmp->index < min_index)
+		{
+			min_index = tmp->index;
+			min_pos = tmp->pos;
+		}
+		tmp = tmp->next;
+	}
+	return (min_pos);
 }

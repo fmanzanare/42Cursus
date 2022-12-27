@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 17:23:36 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:40:15 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,20 @@ t_stack		*args_splitter_and_stk_filler(char **args);
 /* Stacks Utils */
 void		assign_indexes(t_stack *stk, int stk_len);
 int			stack_length(t_stack *stk);
-int			check_sorted(t_stack *stk);
 t_stack		*bottom_node(t_stack *stk);
 t_stack		*before_bottom_node(t_stack *stk);
+int			min_index_pos(t_stack **stk);
 /* Utils */
 void		check_duplicates(t_stack *stk);
+int			check_sorted(t_stack *stk);
 long int	ft_atoli_errexit(char *str);
 int			abs_value(int num);
 void		ft_errexit(void);
 /* Positions and Cost Calculator */
+void		assign_pos(t_stack **stk);
 void		assing_target_pos(t_stack **stk_a, t_stack **stk_b);
 void		cost_calc(t_stack **stk_a, t_stack **stk_b);
+void		calc_cheapest_move(t_stack **stk_a, t_stack **stk_b);
 /* Movements */
 void		moves(t_stack **stk_a, t_stack **stk_b, int cost_a, int cost_b);
 /* Push-Swap Movements */

@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:57:36 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 17:26:14 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:37:40 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	target_calc(t_stack **stk_a, int b_idx, int t_idx, int t_pos)
 * Assigns the current position to the elements of the Stack
 * @param stk Stack to work with
 */
-static void	assign_pos(t_stack **stk)
+void	assign_pos(t_stack **stk)
 {
 	t_stack	*tmp;
 	int		pos;

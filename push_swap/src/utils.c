@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:34:55 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 16:19:55 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:34:39 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,21 @@ long int	ft_atoli_errexit(char *str)
 		ft_errexit();
 	num *= sign;
 	return (num);
+}
+
+/*
+* Checks if the stack is sorted
+* @param stk stack to check
+*/
+int	check_sorted(t_stack *stk)
+{
+	while (stk->next != NULL)
+	{
+		if (stk->num > stk->next->num)
+			return (0);
+		stk = stk->next;
+	}
+	return (1);
 }
 
 /*
