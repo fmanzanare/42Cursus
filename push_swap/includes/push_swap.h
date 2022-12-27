@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 17:40:15 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:55:46 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void		pb_act(t_stack **stk_b, t_stack **stk_a);
 /* Small Sort */
 void		small_sort(t_stack *stk);
 /* Large Sort */
+void		large_sort(t_stack **stk_a, t_stack **stk_b, int stk_len);
 
 #endif

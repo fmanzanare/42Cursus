@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:25:34 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 17:48:49 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:56:01 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	algo_chooser(t_stack **stk_a, t_stack **stk_b, int stk_len)
 		sa_act(*stk_a);
 	else if (stk_len == 3)
 		small_sort(*stk_a);
+	else if (stk_len > 3 && !check_sorted(*stk_a))
+		large_sort(stk_a, stk_b, stk_len);
 }
 
 // void leaks(void)
