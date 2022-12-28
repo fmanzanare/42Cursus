@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:49:46 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/28 17:25:10 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:53:04 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ t_stack	*fill_stk_a(t_stack *stk, char **args, int num_counter)
 	i = 0;
 	num = 0;
 	first_item = 0;
+	if (!args[i])
+		ft_errexit(stk);
 	while (args[i])
 	{
 		num = ft_atoli_errexit(args[i], stk);
