@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 11:06:26 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/28 12:26:48 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 18:37:11 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	reverse_rotate(t_stack **stk)
 void	rra_act(t_stack **stk)
 {
 	reverse_rotate(stk);
-	ft_printf("rra\n");
+	write(1, "rra\n", 4);
 }
 
 /*
@@ -47,7 +47,7 @@ void	rra_act(t_stack **stk)
 void	rrb_act(t_stack **stk)
 {
 	reverse_rotate(stk);
-	ft_printf("rrb\n");
+	write(1, "rrb\n", 4);
 }
 
 /*
@@ -59,5 +59,5 @@ void	rrr_act(t_stack **stk_a, t_stack **stk_b)
 {
 	reverse_rotate(stk_a);
 	reverse_rotate(stk_b);
-	ft_printf("rrr\n");
+	write(1, "rrr\n", 4);
 }

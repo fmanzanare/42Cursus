@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:43:09 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/28 12:22:24 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 18:39:02 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	swap(t_stack *stk)
 void	sa_act(t_stack **stk)
 {
 	swap(*stk);
-	ft_printf("sa\n");
+	write(1, "sa\n", 3);
 }
 
 /*
@@ -47,7 +47,7 @@ void	sa_act(t_stack **stk)
 void	sb_act(t_stack **stk)
 {
 	swap(*stk);
-	ft_printf("sb\n");
+	write(1, "sb\n", 3);
 }
 
 /*
@@ -59,5 +59,5 @@ void	ss_act(t_stack **stk_a, t_stack **stk_b)
 {
 	swap(*stk_a);
 	swap(*stk_b);
-	ft_printf("ss\n");
+	write(1, "ss\n", 3);
 }

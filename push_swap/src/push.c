@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:14:05 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 19:32:55 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 18:36:19 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	push(t_stack **stk_src, t_stack **stk_dst)
 void	pa_act(t_stack **stk_a, t_stack **stk_b)
 {
 	push(stk_b, stk_a);
-	ft_printf("pa\n");
+	write(1, "pa\n", 3);
 }
 
 /*
@@ -48,5 +48,5 @@ void	pa_act(t_stack **stk_a, t_stack **stk_b)
 void	pb_act(t_stack **stk_a, t_stack **stk_b)
 {
 	push(stk_a, stk_b);
-	ft_printf("pb\n");
+	write(1, "pb\n", 3);
 }

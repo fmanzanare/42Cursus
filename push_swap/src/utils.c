@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:34:55 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/28 16:42:33 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 18:39:31 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	abs_value(int num)
 
 void	ft_errexit(t_stack *stk)
 {
-	ft_printf("Error\n");
+	write(1, "Error\n", 6);
 	free_stk(&stk);
 	exit(1);
 }
