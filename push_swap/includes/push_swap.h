@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/28 12:19:32 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 14:40:25 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@ int			min_index_pos(t_stack **stk);
 /* Utils */
 void		check_duplicates(t_stack *stk);
 int			check_sorted(t_stack *stk);
-long int	ft_atoli_errexit(char *str);
+long int	ft_atoli_errexit(char *str, t_stack *stk);
 int			abs_value(int num);
-void		ft_errexit(void);
+void		ft_errexit(t_stack *stk);
+/* Memory Free */
+void		free_stk(t_stack **stk);
+void		free_arr(char **arr);
 /* Positions and Cost Calculator */
 void		assign_pos(t_stack **stk);
 void		assing_target_pos(t_stack **stk_a, t_stack **stk_b);

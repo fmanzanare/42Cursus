@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 11:34:55 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 19:24:39 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 14:32:57 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 * If no digits are found, it goes directly to Error Exit.
 * @param str String to convert into "int"
 */
-long int	ft_atoli_errexit(char *str)
+long int	ft_atoli_errexit(char *str, t_stack *stk)
 {
 	long int			num;
 	int					sign;
@@ -28,7 +28,7 @@ long int	ft_atoli_errexit(char *str)
 	sign = 1;
 	num = 0;
 	if (!*str)
-		ft_errexit();
+		ft_errexit(stk);
 	while (ft_isspecialchar(*str))
 		str++;
 	if (ft_issign(*str) == -1)
@@ -42,7 +42,7 @@ long int	ft_atoli_errexit(char *str)
 		digit_found = 1;
 	}
 	if (!digit_found)
-		ft_errexit();
+		ft_errexit(stk);
 	num *= sign;
 	return (num);
 }
@@ -81,7 +81,7 @@ void	check_duplicates(t_stack *stk)
 		while (nav)
 		{
 			if (nav->num == fixed->num)
-				ft_errexit();
+				ft_errexit(stk);
 			nav = nav->next;
 		}
 		fixed = fixed->next;
@@ -99,9 +99,9 @@ int	abs_value(int num)
 	return (num);
 }
 
-void	ft_errexit(void)
+void	ft_errexit(t_stack *stk)
 {
 	ft_printf("Error\n");
-	// Free memory functions!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	free_stk(&stk);
 	exit(1);
 }
