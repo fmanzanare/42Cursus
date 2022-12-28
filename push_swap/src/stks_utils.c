@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 16:01:37 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 17:40:54 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:28:36 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 */
 int	stack_length(t_stack *stk)
 {
-	int	stk_length;
+	int		stk_length;
 
 	stk_length = 0;
 	if (!stk)
