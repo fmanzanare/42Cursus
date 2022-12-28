@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 11:34:43 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 16:21:03 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:16:52 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ static int	max_index_finder(t_stack *stk)
 *		if "true", places the second item, at the begining.
 * @param stk Stack to work with
 */
-void	small_sort(t_stack *stk)
+void	small_sort(t_stack **stk)
 {
 	int		max;
 
-	if (check_sorted(stk))
+	if (check_sorted(*stk))
 		return ;
-	max = max_index_finder(stk);
-	if (max == stk->index)
-		ra_act(&stk);
-	else if (max == stk->next->index)
-		rra_act(&stk);
-	if (stk->index > stk->next->index)
+	max = max_index_finder(*stk);
+	if (max == (*stk)->index)
+		ra_act(stk);
+	else if (max == (*stk)->next->index)
+		rra_act(stk);
+	if ((*stk)->index > (*stk)->next->index)
 		sa_act(stk);
 }

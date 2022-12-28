@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:30:46 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 19:38:47 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:27:49 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,13 @@ static void	drift_stack(t_stack **stk_a)
 void	large_sort(t_stack **stk_a, t_stack **stk_b, int stk_len)
 {
 	push_and_save3(stk_a, stk_b, stk_len);
-	small_sort(*stk_a);
+	small_sort(stk_a);
 	while (*stk_b)
 	{
 		assing_target_pos(stk_a, stk_b);
 		cost_calc(stk_a, stk_b);
 		calc_cheapest_move(stk_a, stk_b);
 	}
-	ft_printf("Hola\n");
 	if (!check_sorted(*stk_a))
 		drift_stack(stk_a);
 }

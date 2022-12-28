@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:57:36 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 18:37:52 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:10:17 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	target_calc(t_stack **stk_a, int b_idx, int t_idx, int t_pos)
 	tmp = *stk_a;
 	while (tmp)
 	{
-		if (tmp->index < b_idx)
+		if (tmp->index < t_idx)
 		{
 			t_idx = tmp->index;
 			t_pos = tmp->pos;
@@ -139,7 +139,7 @@ void	calc_cheapest_move(t_stack **stk_a, t_stack **stk_b)
 	{
 		if (abs_value(tmp->cost_a) + abs_value(tmp->cost_b) < abs_value(min))
 		{
-			min = abs_value(tmp->cost_a) + abs_value(tmp->cost_b);
+			min = abs_value(tmp->cost_b) + abs_value(tmp->cost_a);
 			cost_a = tmp->cost_a;
 			cost_b = tmp->cost_b;
 		}

@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:56:40 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 19:33:01 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:19:32 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void		calc_cheapest_move(t_stack **stk_a, t_stack **stk_b);
 void		moves(t_stack **stk_a, t_stack **stk_b, int cost_a, int cost_b);
 /* Push-Swap Movements */
 /* Swap */
-void		sa_act(t_stack *stk);
-void		sb_act(t_stack *stk);
-void		ss_act(t_stack *stk_a, t_stack *stk_b);
+void		sa_act(t_stack **stk);
+void		sb_act(t_stack **stk);
+void		ss_act(t_stack **stk_a, t_stack **stk_b);
 /* Rotate */
 void		ra_act(t_stack **stk);
 void		rb_act(t_stack **stk);
@@ -70,7 +70,7 @@ void		pa_act(t_stack **stk_a, t_stack **stk_b);
 void		pb_act(t_stack **stk_a, t_stack **stk_b);
 /* Algorithms */
 /* Small Sort */
-void		small_sort(t_stack *stk);
+void		small_sort(t_stack **stk);
 /* Large Sort */
 void		large_sort(t_stack **stk_a, t_stack **stk_b, int stk_len);
 

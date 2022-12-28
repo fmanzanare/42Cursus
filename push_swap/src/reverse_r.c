@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 11:06:26 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/27 12:15:48 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 12:26:48 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	reverse_rotate(t_stack **stk)
 	tmp = *stk;
 	*stk = tail;
 	(*stk)->next = tmp;
-	prev_tail = NULL;
+	prev_tail->next = NULL;
 }
 
 /*
