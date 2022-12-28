@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:25:34 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/28 12:18:26 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 13:09:10 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	algo_chooser(t_stack **stk_a, t_stack **stk_b, int stk_len)
 {
 	if (stk_len == 2 && !check_sorted(*stk_a))
 		sa_act(stk_a);
-	else if (stk_len == 3)
+	else if (stk_len == 3 && !check_sorted(*stk_a))
 		small_sort(stk_a);
 	else if (stk_len > 3 && !check_sorted(*stk_a))
 		large_sort(stk_a, stk_b, stk_len);

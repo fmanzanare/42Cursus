@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 11:34:43 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/28 12:16:52 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/28 13:08:56 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void	small_sort(t_stack **stk)
 {
 	int		max;
 
-	if (check_sorted(*stk))
-		return ;
 	max = max_index_finder(*stk);
 	if (max == (*stk)->index)
 		ra_act(stk);
