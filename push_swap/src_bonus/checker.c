@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:06:01 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/30 14:07:12 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:02:48 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	command_reader(t_stack **stk_a, t_stack **stk_b)
 	{
 		if (!command_finder(cmd, stk_a, stk_b))
 		{
+			free(cmd);
 			free_stk(stk_b);
 			ft_errexit(*stk_a);
 		}
