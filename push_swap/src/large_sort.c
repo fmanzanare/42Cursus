@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 13:30:46 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/28 13:40:49 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:47:02 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ static void	push_and_save3(t_stack **stk_a, t_stack **stk_b, int stk_len)
 	}
 }
 
+/*
+* Once Stack A is almost sorted and Stack B is empty
+* It looks for the "min" index and places it in the correct "pos"
+* If it is in the first half, it rev. rotate Stack A
+* If it is in the bottom half, it rotates Stack A
+* @param stk_a Stack A
+*/
 static void	drift_stack(t_stack **stk_a)
 {
 	int		min_idx_pos;

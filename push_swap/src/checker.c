@@ -1,51 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mem_free.c                                         :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 14:25:25 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/30 13:00:11 by fmanzana         ###   ########.fr       */
+/*   Created: 2022/12/30 13:06:01 by fmanzana          #+#    #+#             */
+/*   Updated: 2022/12/30 13:16:17 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/*
-* It frees the allocated memory for the stack.
-* @param stk Stack to be free
-*/
-void	free_stk(t_stack **stk)
+int	command_finder(char **cmd)
 {
-	t_stack	*tmp;
 
-	if (!stk || !(*stk))
-		return ;
-	while (*stk)
-	{
-		tmp = (*stk)->next;
-		free(*stk);
-		(*stk) = tmp;
-	}
-	(*stk) = NULL;
 }
 
-/*
-* It frees the allocated memory for an Array of Strings
-* @param arr Array to be free
-*/
-void	free_arr(char **arr)
+void	command_reader(t_stack ***stk_a, t_stack **stk_b)
 {
-	int		i;
+	char	*cmd;
 
-	if (!arr || !(*arr))
-		return ;
-	i = 0;
-	while (arr[i])
+	cmd = get_next_line(0);
+	while (cmd)
 	{
-		free(arr[i]);
-		i++;
+
 	}
-	free(arr);
+}
+
+int	main(int argc, char **args)
+{
+	t_stack	*stk_a;
+	t_stack	*stk_b;
+
+	if (argc <= 1)
+	{
+		write(1, "Error\n", 6);
+		return (1);
+	}
+	stk_b = NULL;
+	stk_a = args_splitter_and_stk_filler(args);
+	check_duplicates(stk_a);
+
+	free_stk(stk_a);
+	free_stk(stk_b);
+	return (0);
 }

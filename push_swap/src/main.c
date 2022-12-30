@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 13:25:34 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/28 17:50:55 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/30 12:27:46 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,12 @@ static void	algo_chooser(t_stack **stk_a, t_stack **stk_b, int stk_len)
 		large_sort(stk_a, stk_b, stk_len);
 }
 
-void	leaks(void)
-{
-	system("leaks -q push_swap");
-}
-
 int	main(int argc, char **args)
 {
 	t_stack		*stk_a;
 	t_stack		*stk_b;
 	int			stk_len;
 
-	atexit(leaks);
 	if (argc <= 1)
 		return (1);
 	stk_b = NULL;
