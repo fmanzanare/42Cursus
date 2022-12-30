@@ -6,18 +6,27 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:06:01 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/12/30 16:02:48 by fmanzana         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:22:10 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+/*
+* Checks the command input. If it is correct it applies the action.
+* If it is not, it returns 0
+* @param cmd Command String
+* @param stk_a Stack A
+* @param stk_b Stack B
+*/
 static int	command_finder(char *cmd, t_stack **stk_a, t_stack **stk_b)
 {
 	if (!ft_strncmp("sa\n", cmd, 4))
 		sa_act(stk_a);
 	else if (!ft_strncmp("sb\n", cmd, 4))
 		sb_act(stk_b);
+	else if (!ft_strncmp("ss\n", cmd, 4))
+		ss_act(stk_a, stk_b);
 	else if (!ft_strncmp("ra\n", cmd, 4))
 		ra_act(stk_a);
 	else if (!ft_strncmp("rb\n", cmd, 4))
@@ -39,6 +48,13 @@ static int	command_finder(char *cmd, t_stack **stk_a, t_stack **stk_b)
 	return (1);
 }
 
+/*
+* Reads the commands for the stdin and checks if they are correct
+* If they are not correct, it frees the allocated memory and goes to stderr
+* If they are right, it applies the command and keeps going on.
+* @param stk_a Stack A
+* @param stk_b Stack B
+*/
 static void	command_reader(t_stack **stk_a, t_stack **stk_b)
 {
 	char	*cmd;
