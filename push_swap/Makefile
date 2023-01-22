@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/17 11:29:11 by fmanzana          #+#    #+#              #
-#    Updated: 2023/01/22 16:56:03 by fmanzana         ###   ########.fr        #
+#    Updated: 2023/01/22 17:28:13 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,20 +30,23 @@ FT_PRINTF_LINK = -L./includes/libft_plus/ft_printf -lftprintf
 
 all:		$(NAME)
 
-$(OBJ_PUSH_SWAP):	$(SRCS) $(SRC_MAND) $(LIBFT)
-			@$(CC) $(CFLAGS) -g -c $(SRCS) $(SRC_MAND)
+$(OBJS):	$(SRCS)
+			@$(CC) $(CFLAGS) -g -c $(SRCS)
 
-$(NAME):	$(OBJ_PUSH_SWAP)
+$(OBJ_PUSH_SWAP):	$(SRC_MAND)
+			@$(CC) $(CFLAGS) -g -c $(SRC_MAND)
+
+$(NAME):	$(OBJS) $(OBJ_PUSH_SWAP) $(LIBFT)
 			@$(CC) $(CFLAGS) $(OBJS) $(OBJ_PUSH_SWAP) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME)
 			@echo "Compilación done!"
 
 $(LIBFT):
 			@make -C ./includes/libft_plus
 
-$(OBJ_BONUS):	$(SRCS) $(SRC_BONUS) $(LIBFT)
-			@$(CC) $(CFLAGS) -g -c $(SRCS) $(SRC_BONUS)
+$(OBJ_BONUS):	$(SRC_BONUS)
+			@$(CC) $(CFLAGS) -g -c $(SRC_BONUS)
 
-bonus:		$(OBJ_BONUS)
+bonus:		$(OBJS) $(OBJ_BONUS) $(LIBFT)
 			@$(CC) $(CFLAGS) $(OBJS) $(OBJ_BONUS) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME_BONUS)
 			@echo "Checker done!"
 
