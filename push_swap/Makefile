@@ -6,11 +6,12 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/17 11:29:11 by fmanzana          #+#    #+#              #
-#    Updated: 2022/12/30 15:11:33 by fmanzana         ###   ########.fr        #
+#    Updated: 2023/01/22 16:56:03 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
+NAME_BONUS = checker
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
@@ -19,7 +20,6 @@ SRCS = $(addprefix ./src/, init_stks.c large_sort.c mem_free.c movements.c posit
 SRC_MAND = $(addprefix ./src_push_swap/, main.c)
 SRC_BONUS = $(addprefix ./src_bonus/, checker.c)
 
-OBJDIR = ./objects/
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 OBJ_PUSH_SWAP = $(addsuffix .o, $(notdir $(basename $(SRC_MAND))))
 OBJ_BONUS = $(addsuffix .o, $(notdir $(basename $(SRC_BONUS))))
@@ -28,40 +28,34 @@ LIBFT = ./includes/libft_plus/libft.a
 LIBFT_LINK = -L./includes/libft_plus -lft
 FT_PRINTF_LINK = -L./includes/libft_plus/ft_printf -lftprintf
 
-all:		obj $(NAME)
+all:		$(NAME)
 
-obj:
-			@rm -rf $(OBJDIR)
-			@mkdir $(OBJDIR)
-
-$(OBJS):	$(SRCS) $(SRC_MAND)
+$(OBJ_PUSH_SWAP):	$(SRCS) $(SRC_MAND) $(LIBFT)
 			@$(CC) $(CFLAGS) -g -c $(SRCS) $(SRC_MAND)
 
-$(NAME):	$(OBJS) $(LIBFT)
-			@mv $(OBJS) $(OBJ_PUSH_SWAP) $(OBJDIR)
-			@$(CC) $(CFLAGS) $(addprefix $(OBJDIR), $(OBJS)) $(addprefix $(OBJDIR), $(OBJ_PUSH_SWAP)) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME)
+$(NAME):	$(OBJ_PUSH_SWAP)
+			@$(CC) $(CFLAGS) $(OBJS) $(OBJ_PUSH_SWAP) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME)
 			@echo "Compilación done!"
 
 $(LIBFT):
 			@make -C ./includes/libft_plus
 
-$(OBJ_BONUS):	$(SRCS) $(SRC_BONUS)
+$(OBJ_BONUS):	$(SRCS) $(SRC_BONUS) $(LIBFT)
 			@$(CC) $(CFLAGS) -g -c $(SRCS) $(SRC_BONUS)
 
-bonus:		obj $(OBJ_BONUS) $(LIBFT)
-			@mv $(OBJS) $(OBJ_BONUS) $(OBJDIR)
-			@$(CC) $(CFLAGS) $(addprefix $(OBJDIR), $(OBJS)) $(addprefix $(OBJDIR), $(OBJ_BONUS)) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o checker
+bonus:		$(OBJ_BONUS)
+			@$(CC) $(CFLAGS) $(OBJS) $(OBJ_BONUS) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME_BONUS)
 			@echo "Checker done!"
+
 clean:
-			@rm -rf $(OBJDIR)
-			@rm -f ./*.o
+			@rm -f $(OBJS) $(OBJ_PUSH_SWAP) $(OBJ_BONUS)
 			@make -C ./includes/libft_plus clean
 
 fclean:		clean
-			@rm -f $(NAME) checker
+			@rm -f $(NAME) $(NAME_BONUS)
 			@make -C ./includes/libft_plus fclean
 			@echo "Limpieza TOTAL done!"
 
 re:			fclean all
 
-.PHONY: all, obj, bonus, clean, fclean, re
+.PHONY: all bonus clean fclean re
