@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/17 11:29:11 by fmanzana          #+#    #+#              #
-#    Updated: 2023/01/22 17:28:13 by fmanzana         ###   ########.fr        #
+#    Updated: 2023/01/23 18:25:02 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,12 +41,14 @@ $(NAME):	$(OBJS) $(OBJ_PUSH_SWAP) $(LIBFT)
 			@echo "Compilación done!"
 
 $(LIBFT):
-			@make -C ./includes/libft_plus
+		@make -C ./includes/libft_plus
+
+bonus:		$(NAME_BONUS)
 
 $(OBJ_BONUS):	$(SRC_BONUS)
 			@$(CC) $(CFLAGS) -g -c $(SRC_BONUS)
 
-bonus:		$(OBJS) $(OBJ_BONUS) $(LIBFT)
+$(NAME_BONUS):		$(OBJS) $(OBJ_BONUS) $(LIBFT)
 			@$(CC) $(CFLAGS) $(OBJS) $(OBJ_BONUS) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME_BONUS)
 			@echo "Checker done!"
 
