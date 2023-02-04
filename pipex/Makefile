@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 12:54:56 by fmanzana          #+#    #+#              #
-#    Updated: 2022/09/17 13:12:42 by fmanzana         ###   ########.fr        #
+#    Updated: 2023/02/04 18:10:17 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,34 +15,28 @@ NAME = pipex
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ./sources/*.c
+SRCS = $(addprefix ./src/, main_pipex.c command_functions.c processes_functions.c)
 
-OBJDIR = ./objects/
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 
 LIBFT = ./includes/libft_plus/libft.a
 LIBFT_LINK = -L./includes/libft_plus -lft
 FT_PRINTF_LINK = -L./includes/libft_plus/ft_printf -lftprintf
 
-all:		obj $(NAME) 
-
-obj:
-			@rm -rf $(OBJDIR)
-			@mkdir $(OBJDIR)
+all:		$(NAME)
 
 $(OBJS):	$(SRCS)
 			@$(CC) $(CFLAGS) -g -c $(SRCS)
 
 $(NAME):	$(OBJS) $(LIBFT)
-			@mv $(OBJS) $(OBJDIR)
-			@$(CC) $(CFLAGS) $(addprefix $(OBJDIR), $(OBJS)) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LINK) $(FT_PRINTF_LINK) -g -o $(NAME)
 			@echo "Compilación done!"
 
 $(LIBFT):
 			@make -C ./includes/libft_plus
 
 clean:
-			@rm -rf $(OBJDIR)
+			@rm -rf $(OBJS)
 			@make -C ./includes/libft_plus clean
 
 fclean:		clean
@@ -52,4 +46,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY: all, obj, clean, fclean, re
+.PHONY: all, clean, fclean, re
