@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/11 14:27:20 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/11 14:49:42 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ static void	error_ctr(t_data *data, int argc, char **argv)
 		exit(1);
 	}
 }
+
+/*
+* First of all, it does the error management
+* Then, it opens a pipe between two file descriptors, contains in data->fds[2]
+* Then, it checks if the commands received through argv are OK
+* Finally, executes "pipex"
+*/
 
 int	main(int argc, char **argv, char **envp)
 {

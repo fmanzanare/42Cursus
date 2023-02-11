@@ -6,14 +6,14 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/11 14:11:21 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/11 14:49:41 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
 /*
-* Function that frees an dimensional array of strings.
+* Function that frees an array of strings.
 */
 void	ft_free_arr(char	**arr)
 {
@@ -92,6 +92,10 @@ static char	*cmd1_fdr(t_data *data, char **argv, int cmd_pos)
 	return (NULL);
 }
 
+/*
+* Command finder control function.
+* It asks if the commands exists to "cmd1_fdr" and "cmd2_fdr"
+*/
 void	cmd_controller(t_data *data, char **argv, int cmd_pos)
 {
 	if (cmd_pos == 2)
