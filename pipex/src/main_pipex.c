@@ -6,13 +6,18 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/11 14:49:42 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:13:45 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-// Función para montar el array de los "PATHS".
+/*
+ * Function to build the "path" array of strings
+ * @param *data Pointer to the struct with the info for the whole program
+ * @param **envp Environment variables (received on main)
+ * @return "path" array of strings
+*/
 static char	**path_arrayer(t_data *data, char **envp)
 {
 	char	*tmp;
@@ -42,7 +47,13 @@ static char	**path_arrayer(t_data *data, char **envp)
 	return (data->paths_arr);
 }
 
-// Función de gestión de errores.
+/*
+ * Function to do the error management.
+ * Checks the "argc", and file opening.
+ * @param *data Pointer to the struct with the info for the whole program
+ * @param argc Number of arguments received on main
+ * @param **argv Arguments received on main
+*/
 static void	error_ctr(t_data *data, int argc, char **argv)
 {
 	if (argc != 5)
@@ -70,7 +81,6 @@ static void	error_ctr(t_data *data, int argc, char **argv)
 * Then, it checks if the commands received through argv are OK
 * Finally, executes "pipex"
 */
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;

@@ -6,16 +6,17 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/11 14:49:41 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:18:33 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
 /*
-* Function that frees an array of strings.
+ * Function that frees an array of strings.
+ * @param **arr Array of strings to be freed
 */
-void	ft_free_arr(char	**arr)
+void	ft_free_arr(char **arr)
 {
 	int		i;
 
@@ -29,7 +30,8 @@ void	ft_free_arr(char	**arr)
 }
 
 /*
- * Funciton that frees all the allocated memory for "data"
+ * Funciton that frees all the allocated memory for "data" struct
+ * @param *data Pointer to the struct to be freed
 */
 void	ft_freeyer(t_data *data)
 {
@@ -40,6 +42,13 @@ void	ft_freeyer(t_data *data)
 	free(data->cmd2_path);
 }
 
+/*
+ * Function to check if the command (argv[3]) is found and executable
+ * @param *data Pointer to the struct with the info for the whole program
+ * @param **argv Arguments received on main
+ * @param cmd_pos Position of the command on the arguments received on main
+ * @param Command string
+*/
 static char	*cmd2_fdr(t_data *data, char **argv, int cmd_pos)
 {
 	char	**cmd;
@@ -66,6 +75,13 @@ static char	*cmd2_fdr(t_data *data, char **argv, int cmd_pos)
 	return (NULL);
 }
 
+/*
+ * Function to check if the command (argv[2]) is found and executable
+ * @param *data Pointer to the struct with the info for the whole program
+ * @param **argv Arguments received on main
+ * @param cmd_pos Position of the command on the arguments received on main
+ * @return Command string
+*/
 static char	*cmd1_fdr(t_data *data, char **argv, int cmd_pos)
 {
 	char	**cmd;
@@ -93,8 +109,11 @@ static char	*cmd1_fdr(t_data *data, char **argv, int cmd_pos)
 }
 
 /*
-* Command finder control function.
-* It asks if the commands exists to "cmd1_fdr" and "cmd2_fdr"
+ * Command finder control function.
+ * It asks if the commands exists to "cmd1_fdr" and "cmd2_fdr"
+ * @param *data Pointer to the struct with the info for the whole program
+ * @param **argv Arguments received on main
+ * @param cmd_pos Position of the command on the arguments received on main
 */
 void	cmd_controller(t_data *data, char **argv, int cmd_pos)
 {
