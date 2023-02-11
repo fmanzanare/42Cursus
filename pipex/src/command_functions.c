@@ -6,13 +6,16 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/19 11:55:58 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/11 14:11:21 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static void	ft_freearr(char	**arr)
+/*
+* Function that frees an dimensional array of strings.
+*/
+void	ft_free_arr(char	**arr)
 {
 	int		i;
 
@@ -22,21 +25,21 @@ static void	ft_freearr(char	**arr)
 		free(arr[i]);
 		i++;
 	}
+	free(arr);
 }
 
+/*
+ * Funciton that frees all the allocated memory for "data"
+*/
 void	ft_freeyer(t_data *data)
 {
-	ft_freearr(data->paths_arr);
-	ft_free_str((void **)&data->paths_arr);
-	ft_freearr(data->cmd1_arr);
-	ft_free_str((void **)&data->cmd1_arr);
-	ft_freearr(data->cmd2_arr);
-	ft_free_str((void **)&data->cmd2_arr);
+	ft_free_arr(data->paths_arr);
+	ft_free_arr(data->cmd1_arr);
+	ft_free_arr(data->cmd2_arr);
 	free(data->cmd1_path);
 	free(data->cmd2_path);
 }
 
-//Funciones para encontrar el "path" del comando requerido.
 static char	*cmd2_fdr(t_data *data, char **argv, int cmd_pos)
 {
 	char	**cmd;
@@ -53,15 +56,13 @@ static char	*cmd2_fdr(t_data *data, char **argv, int cmd_pos)
 			return (NULL);
 		if (!access(data->cmd2_path, F_OK | X_OK))
 		{
-			ft_freearr(cmd);
-			ft_free_str((void **)&cmd);
+			ft_free_arr(cmd);
 			return (data->cmd2_path);
 		}
 		free(data->cmd2_path);
 		i++;
 	}
-	ft_freearr(cmd);
-	ft_free_str((void **)&cmd);
+	ft_free_arr(cmd);
 	return (NULL);
 }
 
@@ -81,15 +82,13 @@ static char	*cmd1_fdr(t_data *data, char **argv, int cmd_pos)
 			return (NULL);
 		if (!access(data->cmd1_path, F_OK | X_OK))
 		{
-			ft_freearr(cmd);
-			ft_free_str((void **)&cmd);
+			ft_free_arr(cmd);
 			return (data->cmd1_path);
 		}
 		free(data->cmd1_path);
 		i++;
 	}
-	ft_freearr(cmd);
-	ft_free_str((void **)&cmd);
+	ft_free_arr(cmd);
 	return (NULL);
 }
 

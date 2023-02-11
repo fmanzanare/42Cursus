@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 12:54:56 by fmanzana          #+#    #+#              #
-#    Updated: 2023/02/04 18:10:17 by fmanzana         ###   ########.fr        #
+#    Updated: 2023/02/11 14:24:18 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,6 @@ $(LIBFT):
 
 clean:
 			@rm -rf $(OBJS)
-			@make -C ./includes/libft_plus clean
 
 fclean:		clean
 			@rm -f $(NAME)

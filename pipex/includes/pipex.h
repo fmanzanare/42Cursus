@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:45:11 by fmanzana          #+#    #+#             */
-/*   Updated: 2022/09/17 12:41:01 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/11 14:10:12 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_data
 }				t_data;
 
 void	cmd_controller(t_data *data, char **argv, int cmd_pos);
+void	ft_free_arr(char **arr);
 void	ft_freeyer(t_data *data);
-//void	leaks(void);
 void	ft_errexit(t_data *data, char *str);
 void	pipex(t_data *data, char **envp);
 
