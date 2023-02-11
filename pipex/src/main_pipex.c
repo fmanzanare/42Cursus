@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/11 18:13:45 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:36:46 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ static char	**path_arrayer(t_data *data, char **envp)
 /*
  * Function to do the error management.
  * Checks the "argc", and file opening.
+ * It also opens the input (RONLY) and outputfile(R&W).
+ * If output file does not exist, it creates it.
+ * If output file exists, it modifies it.
  * @param *data Pointer to the struct with the info for the whole program
  * @param argc Number of arguments received on main
  * @param **argv Arguments received on main
