@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:45:11 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/11 14:10:12 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/12 12:45:01 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_data
 	char	*cmd2_path;
 	int		fds[2];
 	int		in_fd;
+	int		in_fd_flag;
 	int		out_fd;
 	int		stdin_fd;
 	int		stdout_fd;

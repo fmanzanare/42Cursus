@@ -6,13 +6,13 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/11 18:36:46 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:35:55 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-/*
+/**
  * Function to build the "path" array of strings
  * @param *data Pointer to the struct with the info for the whole program
  * @param **envp Environment variables (received on main)
@@ -47,7 +47,7 @@ static char	**path_arrayer(t_data *data, char **envp)
 	return (data->paths_arr);
 }
 
-/*
+/**
  * Function to do the error management.
  * Checks the "argc", and file opening.
  * It also opens the input (RONLY) and outputfile(R&W).
@@ -67,8 +67,8 @@ static void	error_ctr(t_data *data, int argc, char **argv)
 	data->in_fd = open(argv[1], O_RDONLY);
 	if (data->in_fd < 0)
 	{
-		ft_putstr_fd("Wrong file.\n", 2);
-		exit(1);
+		ft_putstr_fd("pipex: input: No such file or directory\n", 2);
+		data->in_fd_flag = 1;
 	}
 	data->out_fd = open(argv[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (data->out_fd < 0)
@@ -78,7 +78,7 @@ static void	error_ctr(t_data *data, int argc, char **argv)
 	}
 }
 
-/*
+/**
 * First of all, it does the error management
 * Then, it opens a pipe between two file descriptors, contains in data->fds[2]
 * Then, it checks if the commands received through argv are OK
@@ -88,6 +88,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
+	data.in_fd_flag = 0;
 	error_ctr(&data, argc, argv);
 	if (path_arrayer(&data, envp))
 	{

@@ -6,13 +6,13 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/12 11:47:39 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:32:02 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-/*
+/**
  * Function that frees an array of strings.
  * @param **arr Array of strings to be freed
 */
@@ -29,20 +29,22 @@ void	ft_free_arr(char **arr)
 	free(arr);
 }
 
-/*
+/**
  * Funciton that frees all the allocated memory for "data" struct
  * @param *data Pointer to the struct to be freed
 */
 void	ft_freeyer(t_data *data)
 {
 	ft_free_arr(data->paths_arr);
-	ft_free_arr(data->cmd1_arr);
+	if (data->cmd1_arr)
+		ft_free_arr(data->cmd1_arr);
 	ft_free_arr(data->cmd2_arr);
-	free(data->cmd1_path);
+	if (data->cmd1_path)
+		free(data->cmd1_path);
 	free(data->cmd2_path);
 }
 
-/*
+/**
  * Function to check if the command (argv[3]) is found and executable
  * @param *data Pointer to the struct with the info for the whole program
  * @param **argv Arguments received on main
@@ -75,7 +77,7 @@ static char	*cmd2_fdr(t_data *data, char **argv, int cmd_pos)
 	return (NULL);
 }
 
-/*
+/**
  * Function to check if the command (argv[2]) is found and executable
  * @param *data Pointer to the struct with the info for the whole program
  * @param **argv Arguments received on main
@@ -101,14 +103,15 @@ static char	*cmd1_fdr(t_data *data, char **argv, int cmd_pos)
 			ft_free_arr(cmd);
 			return (data->cmd1_path);
 		}
-		free(data->cmd1_path);
+		if (data->paths_arr[i + 1])
+			free(data->cmd1_path);
 		i++;
 	}
 	ft_free_arr(cmd);
 	return (NULL);
 }
 
-/*
+/**
  * Command finder control function.
  * It asks if the commands exists to "cmd1_fdr" and "cmd2_fdr"
  * Exit(127), is the shell code for "command not found"
@@ -124,7 +127,6 @@ void	cmd_controller(t_data *data, char **argv, int cmd_pos)
 		{
 			ft_putstr_fd(argv[2], 2);
 			ft_putstr_fd(": Command not found!\n", 2);
-			exit(127);
 		}
 	}
 	else if (cmd_pos == 3)

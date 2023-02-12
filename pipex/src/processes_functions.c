@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 10:51:00 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/12 12:02:50 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:04:01 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,25 @@ void	ft_errexit(t_data *data, char *str)
 
 static void	child1(t_data *data, char **envp)
 {
+	if (data->in_fd_flag)
+		exit(0);
 	close(data->fds[0]);
 	dup2(data->fds[1], 1);
 	close(data->fds[1]);
 	dup2(data->in_fd, 0);
-	close(data->in_fd);
-	if (execve(data->cmd1_path, data->cmd1_arr, envp) < 0)
-		ft_errexit(data, "Command not found!\n");
+	execve(data->cmd1_path, data->cmd1_arr, envp);
+	exit(127);
 }
 
 static void	child2(t_data *data, char **envp)
 {
-	waitpid(data->child1_id, NULL, 0);
 	close(data->fds[1]);
 	dup2(data->fds[0], 0);
 	close(data->fds[0]);
 	dup2(data->out_fd, 1);
-	close(data->out_fd);
-	if (execve(data->cmd2_path, data->cmd2_arr, envp) < 0)
-		ft_errexit(data, "Command not found!\n");
+	execve(data->cmd2_path, data->cmd2_arr, envp);
+	write(1, "Error", 5);
+	ft_errexit(data, "Error");
 }
 
 static void	parent(t_data *data)
@@ -48,7 +48,6 @@ static void	parent(t_data *data)
 
 	close(data->fds[0]);
 	close(data->fds[1]);
-	waitpid(data->child1_id, NULL, 0);
 	waitpid(data->child2_id, &exitst, 0);
 	ft_freeyer(data);
 	if (WIFEXITED(exitst))
