@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/12 18:32:02 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/12 18:45:30 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,16 +125,18 @@ void	cmd_controller(t_data *data, char **argv, int cmd_pos)
 	{
 		if (!cmd1_fdr(data, argv, cmd_pos))
 		{
+			ft_putstr_fd("pipex: ", 2);
 			ft_putstr_fd(argv[2], 2);
-			ft_putstr_fd(": Command not found!\n", 2);
+			ft_putstr_fd(": command not found\n", 2);
 		}
 	}
 	else if (cmd_pos == 3)
 	{
 		if (!cmd2_fdr(data, argv, cmd_pos))
 		{
+			ft_putstr_fd("pipex: ", 2);
 			ft_putstr_fd(argv[3], 2);
-			ft_putstr_fd(": Command not found!\n", 2);
+			ft_putstr_fd(": command not found\n", 2);
 			exit(127);
 		}
 	}
