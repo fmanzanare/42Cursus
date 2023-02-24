@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 12:54:56 by fmanzana          #+#    #+#              #
-#    Updated: 2023/02/11 14:24:18 by fmanzana         ###   ########.fr        #
+#    Updated: 2023/02/24 19:43:34 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = pipex
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = $(addprefix ./src/, main_pipex.c command_functions.c processes_functions.c)
+SRCS = $(addprefix ./src/, main_pipex.c command_functions.c processes_functions.c command_spliter.c)
 
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 

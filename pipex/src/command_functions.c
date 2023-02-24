@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:35:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/12 18:45:30 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/24 19:42:04 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*cmd2_fdr(t_data *data, char **argv, int cmd_pos)
 	int		i;
 
 	i = 0;
-	cmd = ft_split(argv[cmd_pos], ' ');
+	cmd = command_splitter(argv[cmd_pos], ' ');
 	if (!cmd)
 		ft_errexit(data, "Error spliting commands.\n");
 	while (data->paths_arr[i])
@@ -90,7 +90,7 @@ static char	*cmd1_fdr(t_data *data, char **argv, int cmd_pos)
 	int		i;
 
 	i = 0;
-	cmd = ft_split(argv[cmd_pos], ' ');
+	cmd = command_splitter(argv[cmd_pos], ' ');
 	if (!cmd)
 		ft_errexit(data, "Error spliting commands.\n");
 	while (data->paths_arr[i])
