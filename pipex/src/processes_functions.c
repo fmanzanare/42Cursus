@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 10:51:00 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/24 20:13:34 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/24 20:20:04 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ static void	child1(t_data *data, char **envp)
 
 static void	child2(t_data *data, char **envp)
 {
-	int num;
-
 	close(data->fds[1]);
 	dup2(data->fds[0], 0);
 	close(data->fds[0]);
