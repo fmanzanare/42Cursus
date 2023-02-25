@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 10:51:00 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/25 11:40:42 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:01:31 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ static void	child1(t_data *data, char **envp)
 
 static void	child2(t_data *data, char **envp)
 {
+	waitpid(data->child1_id, NULL, 0);
 	close(data->fds[1]);
 	dup2(data->fds[0], 0);
 	close(data->fds[0]);
 	dup2(data->out_fd, 1);
 	execve(data->cmd2_path, data->cmd2_arr, envp);
-	perror("Error: ");
 	ft_errexit(data, "Error\n");
 }
 
@@ -48,6 +48,7 @@ static void	parent(t_data *data)
 
 	close(data->fds[0]);
 	close(data->fds[1]);
+	waitpid(data->child1_id, NULL, 0);
 	waitpid(data->child2_id, &exitst, 0);
 	ft_freeyer(data);
 	if (WIFEXITED(exitst))
