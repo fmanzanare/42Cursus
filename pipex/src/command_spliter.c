@@ -6,13 +6,13 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:47:45 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/25 11:38:13 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:46:26 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static char	*strmalloc(char const **str, char c, int *arrptr)
+static char	*strmalloc(char **str, char c, int *arrptr)
 {
 	char	*res;
 	char	brkchar;
@@ -39,7 +39,7 @@ static char	*strmalloc(char const **str, char c, int *arrptr)
 	return (res);
 }
 
-static char	**arraybuilder(char **arr, int wrds, char c, char const *str)
+static char	**arraybuilder(char **arr, int wrds, char c, char *str)
 {
 	int	i;
 	int	idx;
@@ -66,7 +66,7 @@ static char	**arraybuilder(char **arr, int wrds, char c, char const *str)
 	return (arr);
 }
 
-static int	wrdscounter(char const *str, char c)
+static int	wrdscounter(char *str, char c)
 {
 	int		wrds;
 	char	brkchar;
@@ -81,7 +81,7 @@ static int	wrdscounter(char const *str, char c)
 				str++;
 			if (*str == '\"')
 				str++;
-			brkchar = *(str--);
+			brkchar = *(str - 1);
 			while (*str != brkchar && *str)
 				str++;
 		}
@@ -92,7 +92,7 @@ static int	wrdscounter(char const *str, char c)
 	return (wrds);
 }
 
-char	**command_splitter(char const *str, char c)
+char	**command_splitter(char *str, char c)
 {
 	char	**arr;
 	int		wrds;
