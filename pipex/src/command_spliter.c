@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:47:45 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/24 20:00:27 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:38:13 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static char	*strmalloc(char const **str, char c, int *arrptr)
 	res = malloc(sizeof(char) * (i + 1));
 	if (!res)
 		return (NULL);
+	ft_strlcpy(res, *str, (i + 1));
 	*arrptr = i;
 	return (res);
 }

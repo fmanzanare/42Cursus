@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:06:30 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/12 18:35:55 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:27:10 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ int	main(int argc, char **argv, char **envp)
 			exit(1);
 		}
 		cmd_controller(&data, argv, 2);
-		data.cmd1_arr = ft_split(argv[2], ' ');
+		data.cmd1_arr = command_splitter(argv[2], ' ');
 		cmd_controller(&data, argv, 3);
-		data.cmd2_arr = ft_split(argv[3], ' ');
+		data.cmd2_arr = command_splitter(argv[3], ' ');
 		pipex(&data, envp);
 	}
 	else
