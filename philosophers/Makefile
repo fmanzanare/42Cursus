@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 16:27:25 by fmanzana          #+#    #+#              #
-#    Updated: 2023/02/25 17:02:49 by fmanzana         ###   ########.fr        #
+#    Updated: 2023/02/25 19:03:40 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = philo
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = $(addprefix ./src/, main_philo.c utils.c)
+SRCS = $(addprefix ./src/, main_philo.c utils.c philo_utils.c)
 
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 

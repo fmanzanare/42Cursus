@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:34:17 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/25 18:27:47 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:19:34 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ static void	error_mng(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	t_philo	**table;
 
 	data_initializer(&data);
 	argv_parser(&data, argc, argv);
 	error_mng(&data);
+	table = table_builder(&data);
+	free_table(table);
+	return (0);
 }

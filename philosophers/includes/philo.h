@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:34:13 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/25 18:39:51 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/25 19:17:07 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ typedef struct s_data
 void	data_initializer(t_data *data);
 void	ft_putstr_fd(char *str, int fd);
 void	argv_parser(t_data *data, int argc, char **argv);
+t_philo	**table_builder(t_data *data);
+void	free_table(t_philo **table);
 
 #endif
