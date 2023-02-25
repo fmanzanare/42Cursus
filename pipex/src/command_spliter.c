@@ -6,12 +6,20 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:47:45 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/25 11:46:26 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:36:44 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
+/**
+ * Allocates memory for each string to be saved on the array.
+ * It also copies the received string on the res variable (return value).
+ * @param **str Pointer to the string that will be allocated and copied.
+ * @param c Char that will be the split target.
+ * @param *arrptr Pointer to the index of the array.
+ * @return *res Full string to be copied on the proper array index.
+*/
 static char	*strmalloc(char **str, char c, int *arrptr)
 {
 	char	*res;
@@ -39,6 +47,14 @@ static char	*strmalloc(char **str, char c, int *arrptr)
 	return (res);
 }
 
+/**
+ * Builds the full array once it has been splited and memory allocated.
+ * @param **arr Array to be built.
+ * @param wrds Number of words that compose the array.
+ * @param c Char that will be the split target.
+ * @param *str Strign that will be splited into the array.
+ * @return **arr The built array.
+*/
 static char	**arraybuilder(char **arr, int wrds, char c, char *str)
 {
 	int	i;
@@ -66,6 +82,12 @@ static char	**arraybuilder(char **arr, int wrds, char c, char *str)
 	return (arr);
 }
 
+/**
+ * Counts the number of words that compose the received string.
+ * @param *str String to be splited.
+ * @param c Char that will be the split target.
+ * @return wrds Number of words that compose the string, splitted by "c".
+*/
 static int	wrdscounter(char *str, char c)
 {
 	int		wrds;
@@ -92,6 +114,12 @@ static int	wrdscounter(char *str, char c)
 	return (wrds);
 }
 
+/**
+ * Function that will be calling the other functions.
+ * @param *str String to be splitted.
+ * @param c Char that will be the split target.
+ * @return **arr The array to be returned, once it has been built
+*/
 char	**command_splitter(char *str, char c)
 {
 	char	**arr;
