@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:34:13 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/27 14:05:15 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:25:54 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 typedef struct s_philo
 {
+	pthread_t			philoID;
+	struct timeval		*curr_time;
 	long unsigned int	p_start;
 	long unsigned int	te_eat;
 	long unsigned int	te_sleep;
@@ -29,13 +31,14 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	int			n_philos;
-	long int	death_t;
-	long int	eat_t;
-	long int	sleep_t;
-	int			total_eat;
-	pthread_t	*philos_ids;
-	t_philo		**table;
+	int				n_philos;
+	long int		death_t;
+	long int		eat_t;
+	long int		sleep_t;
+	int				total_eat;
+	struct timeval	*curr_time;
+	pthread_t		*philos_ids;
+	t_philo			**table;
 }				t_data;
 
 void	data_initializer(t_data *data);
@@ -43,6 +46,6 @@ void	ft_putstr_fd(char *str, int fd);
 void	argv_parser(t_data *data, int argc, char **argv);
 void	table_builder(t_data *data);
 void	free_table(t_philo **table);
-void	*thread_start_rutine(void *pos);
+void	*thread_start_rutine(void *p);
 
 #endif
