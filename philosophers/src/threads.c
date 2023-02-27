@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 20:02:53 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/26 20:43:28 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:18:04 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ long int	get_time_stamp(void)
 	return (msecs);
 }
 
-void	*thread_start_runtime(void)
+void	*thread_start_rutine(void *argv)
 {
-	pthread_t		id;
-
-	id = pthread_self();
-	printf("PhiloID: [%ld], Time Stamp: %li\n", id, get_time_stamp());
+	printf("PhiloID: [%li], Time Stamp: %li\n",(long int)argv, get_time_stamp());
 	return (NULL);
 }
