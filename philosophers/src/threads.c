@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 20:02:53 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/27 16:28:35 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:57:11 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ long int	get_time_stamp(long int prev, t_philo *philo)
 	return (time_st);
 }
 
-void	*thread_start_rutine(void *p)
+void	*thread_rutine(void *p)
 {
 	t_philo 	*philo;
 

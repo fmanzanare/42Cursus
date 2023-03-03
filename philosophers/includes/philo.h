@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:34:13 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/27 16:23:33 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:25:20 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_philo
 	pthread_t			philoID;
 	int					philoNo;
 	struct timeval		*curr_time;
+	int					left_fork;
+	int					right_fork;
 	long unsigned int	p_start;
 	long unsigned int	death_t;
 	long unsigned int	eat_t;
@@ -43,6 +45,7 @@ typedef struct s_data
 	int				total_eat;
 	struct timeval	*curr_time;
 	pthread_t		*philos_ids;
+	pthread_mutex_t	*forks;
 	t_philo			**table;
 }				t_data;
 
@@ -51,6 +54,8 @@ void	ft_putstr_fd(char *str, int fd);
 void	argv_parser(t_data *data, int argc, char **argv);
 void	table_builder(t_data *data);
 void	free_table(t_philo **table);
-void	*thread_start_rutine(void *p);
+void	*thread_rutine(void *p);
+void	mutex_arr_initializer(t_data *data);
+void	mutex_arr_destroyer(t_data *data);
 
 #endif
