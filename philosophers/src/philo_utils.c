@@ -6,20 +6,24 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 18:46:20 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/02/27 14:30:25 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:40:18 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static void	philo_initialier(t_philo *philo, long int msecs)
+static void	philo_initialier(t_philo *philo, t_data *data)
 {
 	struct timeval	curr_time;
 
 	philo->curr_time = &curr_time;
-	philo->p_start = msecs;
+	philo->p_start = data->p_start;
 	philo->te_eat = 0;
 	philo->te_sleep = 0;
+	philo->p_start = data->p_start;
+	philo->eat_t = (data->eat_t * 1000);
+	philo->sleep_t = (data->sleep_t * 1000);
+	philo->death_t = (data->death_t * 1000);
 }
 
 void	free_table(t_philo **table)
@@ -39,17 +43,17 @@ void	table_builder(t_data *data)
 {
 	int				i;
 	struct timeval	curr_time;
-	long int		msecs;
 
 	i = 0;
 	gettimeofday(&curr_time, NULL);
-	msecs = ((curr_time.tv_sec * 1000000) + curr_time.tv_usec) / 1000;
+	data->p_start = ((curr_time.tv_sec * 1000000) + curr_time.tv_usec) / 1000;
 	data->table = (t_philo **)malloc(sizeof(t_philo) * (data->n_philos));
 	data->philos_ids = (pthread_t *)malloc(sizeof(pthread_t) * data->n_philos);
 	while (i < data->n_philos)
 	{
 		data->table[i] = (t_philo *)malloc(sizeof(t_philo));
-		philo_initialier(data->table[i], msecs);
+		philo_initialier(data->table[i], data);
+		data->table[i]->philoNo = (i + 1);
 		pthread_create(&data->philos_ids[i], NULL, thread_start_rutine, data->table[i]);
 		pthread_join(data->philos_ids[i], NULL);
 		i++;
