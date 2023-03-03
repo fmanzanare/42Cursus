@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 20:02:53 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/03/03 19:57:11 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:47:48 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,30 @@ long int	get_time_stamp(long int prev, t_philo *philo)
 	return (time_st);
 }
 
+t_philo	*checkID(t_data *data, pthread_t self_id)
+{
+	int		i;
+
+	i = 0;
+	while (i < data->n_philos)
+	{
+		if (data->philos_ids[i] == self_id)
+			return (data->table[i]);
+		i++;
+	}
+	return (NULL);
+}
+
 void	*thread_rutine(void *p)
 {
+	t_data		*data;
+	pthread_t	thread_id;
 	t_philo 	*philo;
 
-	philo = (t_philo *)p;
+	data = (t_data *)p;
+	thread_id = pthread_self();
+	philo = checkID(data, thread_id);
+	//philo = (t_philo *)p;
 	if ((get_time_stamp(philo->p_start, philo) - philo->te_eat) > philo->death_t)
 		printf("%li %i died\n", get_time_stamp(philo->p_start, philo), philo->philoNo);
 	printf("%li %i has taken a fork\n", get_time_stamp(philo->p_start, philo), philo->philoNo);

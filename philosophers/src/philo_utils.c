@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 18:46:20 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/03/03 20:06:08 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:48:30 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	table_builder(t_data *data)
 		data->table[i] = (t_philo *)malloc(sizeof(t_philo));
 		philo_initialier(data->table[i], data);
 		data->table[i]->philoNo = (i + 1);
-		pthread_create(&data->philos_ids[i], NULL, thread_rutine, data->table[i]);
+		pthread_create(&data->philos_ids[i], NULL, thread_rutine, data);
 		pthread_join(data->philos_ids[i], NULL);
 		i++;
 	}
