@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:34:13 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/03/04 10:58:02 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/03/04 12:10:45 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,8 @@ typedef struct s_philo
 	int					philo_no;
 	int					left_fork;
 	int					right_fork;
-	long unsigned int	p_start;
-	long unsigned int	death_t;
-	long unsigned int	eat_t;
-	long unsigned int	sleep_t;
-	long unsigned int	te_eat;
-	long unsigned int	te_sleep;
+	long int			te_eat;
+	long int			te_sleep;
 }				t_philo;
 
 typedef struct s_data
@@ -49,13 +45,14 @@ typedef struct s_data
 	t_philo			**table;
 }				t_data;
 
-void	data_initializer(t_data *data);
-void	ft_putstr_fd(char *str, int fd);
-void	argv_parser(t_data *data, int argc, char **argv);
-void	table_builder(t_data *data);
-void	free_table(t_philo **table);
-void	*thread_rutine(void *p);
-void	mutex_arr_initializer(t_data *data);
-void	mutex_arr_destroyer(t_data *data);
+void		data_initializer(t_data *data);
+void		ft_putstr_fd(char *str, int fd);
+void		argv_parser(t_data *data, int argc, char **argv);
+void		table_builder(t_data *data);
+void		free_table(t_philo **table);
+void		*thread_rutine(void *p);
+long int	get_ts(t_data *data);
+void		mutex_arr_initializer(t_data *data);
+void		mutex_arr_destroyer(t_data *data);
 
 #endif

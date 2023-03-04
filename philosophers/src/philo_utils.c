@@ -6,22 +6,11 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 18:46:20 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/03/04 10:58:24 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/03/04 12:09:05 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-static void	philo_initialier(t_philo *philo, t_data *data)
-{
-	philo->p_start = data->p_start;
-	philo->te_eat = 0;
-	philo->te_sleep = 0;
-	philo->p_start = data->p_start;
-	philo->eat_t = (data->eat_t * 1000);
-	philo->sleep_t = (data->sleep_t * 1000);
-	philo->death_t = (data->death_t * 1000);
-}
 
 void	free_table(t_philo **table)
 {
@@ -50,7 +39,6 @@ void	table_builder(t_data *data)
 	{
 		data->philo_ptr = i;
 		data->table[i] = (t_philo *)malloc(sizeof(t_philo));
-		philo_initialier(data->table[i], data);
 		data->table[i]->philo_no = (i + 1);
 		pthread_create(&data->philos_ids[i], NULL, thread_rutine, data);
 		pthread_join(data->philos_ids[i], NULL);

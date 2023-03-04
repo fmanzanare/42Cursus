@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:47:02 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/03/04 11:00:53 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/03/04 12:07:24 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ void	argv_parser(t_data *data, int argc, char **argv)
 	else
 	{
 		data->n_philos = (int)ft_atoli(argv[1]);
-		data->death_t = ft_atoli(argv[2]);
-		data->eat_t = ft_atoli(argv[3]);
-		data->sleep_t = ft_atoli(argv[4]);
+		data->death_t = ft_atoli(argv[2]) * 1000;
+		data->eat_t = ft_atoli(argv[3]) * 1000;
+		data->sleep_t = ft_atoli(argv[4]) * 1000;
 		if (argc == 6)
 			data->total_eat = (int)ft_atoli(argv[5]);
 	}
