@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:34:13 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/03/03 20:25:20 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/03/04 10:58:02 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@
 
 typedef struct s_philo
 {
-	pthread_t			philoID;
-	int					philoNo;
-	struct timeval		*curr_time;
+	pthread_t			philo_id;
+	int					philo_no;
 	int					left_fork;
 	int					right_fork;
 	long unsigned int	p_start;
@@ -43,6 +42,7 @@ typedef struct s_data
 	long int		eat_t;
 	long int		sleep_t;
 	int				total_eat;
+	int				philo_ptr;
 	struct timeval	*curr_time;
 	pthread_t		*philos_ids;
 	pthread_mutex_t	*forks;

@@ -6,7 +6,7 @@
 /*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:47:02 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/03/03 20:24:49 by fmanzana         ###   ########.fr       */
+/*   Updated: 2023/03/04 11:00:53 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	mutex_arr_initializer(t_data *data)
 	int		i;
 
 	i = 0;
-	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->n_philos);
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philos);
 	while (i < data->n_philos)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
