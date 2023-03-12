@@ -40,10 +40,12 @@ int	main(int argc, char **argv)
 
 	data_initializer(&data);
 	argv_parser(&data, argc, argv);
-	mutex_arr_initializer(&data);
 	error_mng(&data);
+	pthread_mutex_init(&data.status, NULL);
+	mutex_arr_initializer(&data);
 	table_builder(&data);
 	mutex_arr_destroyer(&data);
+	pthread_mutex_destroy(&data.status);
 	//free(&data);
 	return (0);
 }

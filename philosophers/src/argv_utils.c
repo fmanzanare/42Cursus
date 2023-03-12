@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   argv_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fmanzana <fmanzana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 16:47:02 by fmanzana          #+#    #+#             */
-/*   Updated: 2023/03/04 12:07:24 by fmanzana         ###   ########.fr       */
+/*   Created: 2023/03/12 13:04:15 by fmanzana          #+#    #+#             */
+/*   Updated: 2023/03/12 13:04:15 by fmanzana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,41 +22,7 @@ void	ft_putstr_fd(char *str, int fd)
 	write(1, "\n", 1);
 }
 
-void	mutex_arr_destroyer(t_data *data)
-{
-	int		i;
-
-	i = 0;
-	while (i < data->n_philos)
-	{
-		pthread_mutex_destroy(&data->forks[i]);
-		i++;
-	}
-}
-
-void	mutex_arr_initializer(t_data *data)
-{
-	int		i;
-
-	i = 0;
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philos);
-	while (i < data->n_philos)
-	{
-		pthread_mutex_init(&data->forks[i], NULL);
-		i++;
-	}
-}
-
-void	data_initializer(t_data *data)
-{
-	data->n_philos = 0;
-	data->death_t = 0;
-	data->eat_t = 0;
-	data->sleep_t = 0;
-	data->total_eat = 0;
-}
-
-static long int	ft_atoli(char *str)
+static int	ft_atoi(char *str)
 {
 	long int	num;
 	int			sign;
@@ -78,7 +44,9 @@ static long int	ft_atoli(char *str)
 		str++;
 	}
 	num *= sign;
-	return (num);
+	if (num > INT_MIN && num < INT_MAX)
+		return ((int)num);
+	return (-1);
 }
 
 void	argv_parser(t_data *data, int argc, char **argv)
@@ -90,11 +58,11 @@ void	argv_parser(t_data *data, int argc, char **argv)
 	}
 	else
 	{
-		data->n_philos = (int)ft_atoli(argv[1]);
-		data->death_t = ft_atoli(argv[2]) * 1000;
-		data->eat_t = ft_atoli(argv[3]) * 1000;
-		data->sleep_t = ft_atoli(argv[4]) * 1000;
+		data->n_philos = ft_atoi(argv[1]);
+		data->death_t = ft_atoi(argv[2]) * 1000;
+		data->eat_t = ft_atoi(argv[3]) * 1000;
+		data->sleep_t = ft_atoi(argv[4]) * 1000;
 		if (argc == 6)
-			data->total_eat = (int)ft_atoli(argv[5]);
+			data->total_eat = ft_atoi(argv[5]);
 	}
 }

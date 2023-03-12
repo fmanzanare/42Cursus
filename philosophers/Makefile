@@ -15,7 +15,7 @@ NAME = philo
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pthread
 
-SRCS = $(addprefix ./src/, main_philo.c utils.c philo_utils.c threads.c)
+SRCS = $(addprefix ./src/, main_philo.c argv_utils.c philo_utils.c threads.c time_fts.c struct_utils.c)
 
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 
