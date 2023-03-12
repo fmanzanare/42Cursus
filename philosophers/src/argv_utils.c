@@ -59,9 +59,9 @@ void	argv_parser(t_data *data, int argc, char **argv)
 	else
 	{
 		data->n_philos = ft_atoi(argv[1]);
-		data->death_t = ft_atoi(argv[2]) * 1000;
-		data->eat_t = ft_atoi(argv[3]) * 1000;
-		data->sleep_t = ft_atoi(argv[4]) * 1000;
+		data->death_t = ft_atoi(argv[2]);
+		data->eat_t = ft_atoi(argv[3]);
+		data->sleep_t = ft_atoi(argv[4]);
 		if (argc == 6)
 			data->total_eat = ft_atoi(argv[5]);
 	}

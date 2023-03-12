@@ -15,7 +15,7 @@
 int	get_ts(t_data *data)
 {
 	struct timeval	curr_time;
-	long int		msecs;
+	int				msecs;
 
 	gettimeofday(&curr_time, NULL);
 	msecs = (curr_time.tv_sec * 1000) + (curr_time.tv_usec / 1000);
@@ -24,6 +24,8 @@ int	get_ts(t_data *data)
 
 void	catastrophy_checker(t_data *data, t_philo *philo)
 {
-	if (get_ts(data) - philo->te_eat > data->eat_t)
+	if (get_ts(data) - philo->te_eat > data->death_t)
 		data->catastrophy = 1;
+	if (data->catastrophy)
+		philo->te_death = get_ts(data);
 }

@@ -12,7 +12,7 @@
 
 #include "../includes/philo.h"
 
-static void status_log(t_data *data, t_philo *philo, int opt)
+static void	status_log(t_data *data, t_philo *philo, int opt)
 {
 	pthread_mutex_lock(&data->status);
 	if (!data->catastrophy && opt == 1)
@@ -20,10 +20,9 @@ static void status_log(t_data *data, t_philo *philo, int opt)
 	else if (!data->catastrophy && opt == 2)
 		printf("%dms %d is sleeping\n", philo->te_sleep, philo->philo_no);
 	else if (!data->catastrophy && opt == 3)
-		printf("Philosophers ate %d times", data->total_eat);
+		printf("Philosophers ate %d times\n", data->total_eat);
 	else
 		printf("%dms %d is death\n", philo->te_death, philo->philo_no);
-	data->meals++;
 	pthread_mutex_unlock(&data->status);
 }
 
@@ -37,32 +36,39 @@ static void	eating_ft(t_data *data, t_philo *philo)
 	pthread_mutex_unlock(&data->forks[philo->right_fork]);
 }
 
-static void sleeping_ft(t_data *data)
+static void	sleeping_ft(t_data *data, t_philo *philo)
 {
 	int		nap_start;
 
 	nap_start = get_ts(data);
-	while (get_ts(data) - nap_start < data->sleep_t)
+	while ((get_ts(data) - nap_start) < data->sleep_t)
 		usleep(50);
+	philo->te_sleep = get_ts(data);
+	status_log(data, philo, 2);
 }
 
-static void philo_loop(t_data *data, t_philo *philo)
+static void	philo_loop(t_data *data, t_philo *philo)
 {
 	while (!data->catastrophy)
 	{
 		catastrophy_checker(data, philo);
 		if (!data->catastrophy)
-			eating_ft(data, philo);
-		catastrophy_checker(data, philo);
-		if (!data->catastrophy)
 		{
-			sleeping_ft(data);
-			status_log(data, philo, 2);
+			eating_ft(data, philo);
+			data->meals++;
 		}
-		if (data->total_eat > 0 && data->meals == data->total_eat)
+		if (!data->catastrophy)
+			sleeping_ft(data, philo);
+		if (data->total_eat > 0
+			&& (data->meals / data->n_philos) == data->total_eat)
 		{
 			status_log(data, philo, 3);
-			break;
+			break ;
+		}
+		if (data->catastrophy)
+		{
+			status_log(data, philo, 4);
+			exit(1);
 		}
 	}
 }
@@ -76,12 +82,10 @@ void	*thread_rutine(void *p)
 	philo = data->table[data->philo_ptr];
 	philo->left_fork = philo->philo_no - 1;
 	philo->right_fork = philo->philo_no;
-	if (philo->right_fork == philo->philo_no)
+	if (philo->right_fork == data->n_philos)
 		philo->right_fork = 0;
-	//-----------------------------------------
 	if (philo->philo_no % 2)
 		usleep(250);
-	//-----------------------------------------
 	philo_loop(data, philo);
 	return (NULL);
 }
