@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   time_fts.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmanzana <fmanzana@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 12:41:27 by fmanzana          #+#    #+#             */
 /*   Updated: 2023/03/12 12:41:27 by fmanzana         ###   ########.fr       */

@@ -41,7 +41,7 @@ void	table_builder(t_data *data)
 		data->table[i] = (t_philo *)malloc(sizeof(t_philo));
 		data->table[i]->philo_no = (i + 1);
 		pthread_create(&data->table[i]->philo_id, NULL, thread_rutine, data);
-		usleep(250);
+		usleep(50);
 		i++;
 	}
 	i = 0;
