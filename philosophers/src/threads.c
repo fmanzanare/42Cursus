@@ -31,6 +31,14 @@ static void	eating_ft(t_data *data, t_philo *philo)
 	pthread_mutex_lock(&data->forks[philo->left_fork]);
 	pthread_mutex_lock(&data->forks[philo->right_fork]);
 	philo->te_eat = get_ts(data);
+	catastrophy_checker(data, philo);
+	if (data->catastrophy)
+	{
+		status_log(data, philo, 4);
+		exit(1);
+	}
+	while ((get_ts(data) - philo->te_eat) < data->eat_t)
+		usleep(50);
 	status_log(data, philo, 1);
 	pthread_mutex_unlock(&data->forks[philo->left_fork]);
 	pthread_mutex_unlock(&data->forks[philo->right_fork]);
@@ -41,10 +49,16 @@ static void	sleeping_ft(t_data *data, t_philo *philo)
 	int		nap_start;
 
 	nap_start = get_ts(data);
-	while ((get_ts(data) - nap_start) < data->sleep_t)
-		usleep(50);
+	catastrophy_checker(data, philo);
+	if (data->catastrophy)
+	{
+		status_log(data, philo, 4);
+		exit(1);
+	}
 	philo->te_sleep = get_ts(data);
 	status_log(data, philo, 2);
+	while ((get_ts(data) - nap_start) < data->sleep_t)
+		usleep(50);
 }
 
 static void	philo_loop(t_data *data, t_philo *philo)
@@ -57,14 +71,16 @@ static void	philo_loop(t_data *data, t_philo *philo)
 			eating_ft(data, philo);
 			data->meals++;
 		}
+		catastrophy_checker(data, philo);
 		if (!data->catastrophy)
 			sleeping_ft(data, philo);
 		if (data->total_eat > 0
 			&& (data->meals / data->n_philos) == data->total_eat)
 		{
 			status_log(data, philo, 3);
-			break ;
+			exit(1);
 		}
+		catastrophy_checker(data, philo);
 		if (data->catastrophy)
 		{
 			status_log(data, philo, 4);
@@ -84,8 +100,8 @@ void	*thread_rutine(void *p)
 	philo->right_fork = philo->philo_no;
 	if (philo->right_fork == data->n_philos)
 		philo->right_fork = 0;
-	if (philo->philo_no % 2)
-		usleep(250);
+	// if (philo->philo_no % 2)
+	// 	usleep(250);
 	philo_loop(data, philo);
 	return (NULL);
 }
