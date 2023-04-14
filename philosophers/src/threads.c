@@ -16,10 +16,12 @@ static void	status_log(t_data *data, t_philo *philo, int opt)
 {
 	pthread_mutex_lock(&data->status);
 	if (!data->catastrophy && opt == 1)
-		printf("%dms %d is eating\n", philo->te_eat, philo->philo_no);
+		print_eating(philo);
 	else if (!data->catastrophy && opt == 2)
 		printf("%dms %d is sleeping\n", philo->te_sleep, philo->philo_no);
 	else if (!data->catastrophy && opt == 3)
+		printf("%dms %d is thinking\n", philo->te_think, philo->philo_no);
+	else if (!data->catastrophy && opt == 4)
 		printf("Philosophers ate %d times\n", data->total_eat);
 	else
 		printf("%dms %d is death\n", philo->te_death, philo->philo_no);
@@ -34,7 +36,7 @@ static void	eating_ft(t_data *data, t_philo *philo)
 	catastrophy_checker(data, philo);
 	if (data->catastrophy)
 	{
-		status_log(data, philo, 4);
+		status_log(data, philo, 5);
 		exit(1);
 	}
 	while ((get_ts(data) - philo->te_eat) < data->eat_t)
@@ -59,6 +61,8 @@ static void	sleeping_ft(t_data *data, t_philo *philo)
 	status_log(data, philo, 2);
 	while ((get_ts(data) - nap_start) < data->sleep_t)
 		usleep(50);
+	philo->te_think = get_ts(data);
+	status_log(data, philo, 3);
 }
 
 static void	philo_loop(t_data *data, t_philo *philo)
@@ -77,8 +81,8 @@ static void	philo_loop(t_data *data, t_philo *philo)
 		if (data->total_eat > 0
 			&& (data->meals / data->n_philos) == data->total_eat)
 		{
-			status_log(data, philo, 3);
-			exit(1);
+			status_log(data, philo, 4);
+			exit(0);
 		}
 		catastrophy_checker(data, philo);
 		if (data->catastrophy)

@@ -29,6 +29,7 @@ typedef struct s_philo
 	int					right_fork;
 	int					te_eat;
 	int					te_sleep;
+	int					te_think;
 	int					te_death;
 }				t_philo;
 
@@ -60,5 +61,6 @@ int		get_ts(t_data *data);
 void	mutex_arr_initializer(t_data *data);
 void	mutex_arr_destroyer(t_data *data);
 void	catastrophy_checker(t_data *data, t_philo *philo);
+void	print_eating(t_philo *philo);
 
 #endif
