@@ -40,6 +40,7 @@ void	mutex_arr_initializer(t_data *data)
 void	data_initializer(t_data *data)
 {
 	data->n_philos = 0;
+	data->p_start = 0;
 	data->death_t = 0;
 	data->eat_t = 0;
 	data->sleep_t = 0;
@@ -47,4 +48,7 @@ void	data_initializer(t_data *data)
 	data->meals = 0;
 	data->philo_ptr = 0;
 	data->catastrophy = 0;
+	data->philos_ids = 0;
+	data->forks = 0;
+	data->table = NULL;
 }

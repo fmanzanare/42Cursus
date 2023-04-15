@@ -14,9 +14,9 @@
 
 static void	one_philo_case(t_data *data)
 {
-	printf("0ms 1 has taken left fork\n");
+	printf("0ms 1 has taken a fork\n");
 	usleep(data->death_t * 1000);
-	printf("%dms 1 is death\n", data->death_t);
+	printf("%dms 1 died\n", data->death_t);
 }
 
 static int	error_mng(t_data *data)
@@ -42,20 +42,37 @@ static int	error_mng(t_data *data)
 	return (flag);
 }
 
+static void world_destroyer(t_data *data)
+{
+	mutex_arr_destroyer(data);
+	pthread_mutex_destroy(&data->status);
+	pthread_mutex_destroy(&data->get_death_philo);
+	free_table(data->table);
+	free(data->philos_ids);
+	free(data->forks);
+}
+
+void leaks(void)
+{
+	system("leaks -q philo");
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	//atexit(leaks);
 	data_initializer(&data);
-	argv_parser(&data, argc, argv);
-	if (!error_mng(&data))
+	if (!argv_parser(&data, argc, argv) || !error_mng(&data))
 		return (1);
 	pthread_mutex_init(&data.status, NULL);
+	pthread_mutex_init(&data.get_death_philo, NULL);
 	mutex_arr_initializer(&data);
-	table_builder(&data);
-	mutex_arr_destroyer(&data);
-	pthread_mutex_destroy(&data.status);
-	free_table(data.table);
-	//free(&data);
+	if (!table_builder(&data))
+	{
+		world_destroyer(&data);
+		return (1);
+	}
+	world_destroyer(&data);
 	return (0);
 }

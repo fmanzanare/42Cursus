@@ -49,12 +49,12 @@ static int	ft_atoi(char *str)
 	return (-1);
 }
 
-void	argv_parser(t_data *data, int argc, char **argv)
+int	argv_parser(t_data *data, int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
 	{
 		ft_putstr_fd("Error: Wrong nbr of arguments!", 1);
-		exit(1);
+		return (0);
 	}
 	else
 	{
@@ -65,4 +65,5 @@ void	argv_parser(t_data *data, int argc, char **argv)
 		if (argc == 6)
 			data->total_eat = ft_atoi(argv[5]);
 	}
+	return (1);
 }

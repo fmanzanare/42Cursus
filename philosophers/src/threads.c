@@ -16,32 +16,30 @@ static void	status_log(t_data *data, t_philo *philo, int opt)
 {
 	pthread_mutex_lock(&data->status);
 	if (!data->catastrophy && opt == 1)
-		print_eating(philo);
+		print_eating(data, philo);
 	else if (!data->catastrophy && opt == 2)
-		printf("%dms %d is sleeping\n", philo->te_sleep, philo->philo_no);
+		printf("%dms %d is sleeping\n", get_ts(data), philo->philo_no);
 	else if (!data->catastrophy && opt == 3)
-		printf("%dms %d is thinking\n", philo->te_think, philo->philo_no);
-	else if (!data->catastrophy && opt == 4)
-		printf("Philosophers ate %d times\n", data->total_eat);
-	else
-		printf("%dms %d is death\n", philo->te_death, philo->philo_no);
+		printf("%dms %d is thinking\n", get_ts(data), philo->philo_no);
 	pthread_mutex_unlock(&data->status);
 }
 
 static void	eating_ft(t_data *data, t_philo *philo)
 {
 	pthread_mutex_lock(&data->forks[philo->left_fork]);
+	printf("%dms %d has taken a fork\n", get_ts(data), philo->philo_no);
 	pthread_mutex_lock(&data->forks[philo->right_fork]);
+	printf("%dms %d has taken a fork\n", get_ts(data), philo->philo_no);
 	philo->te_eat = get_ts(data);
-	catastrophy_checker(data, philo);
-	if (data->catastrophy)
-	{
-		status_log(data, philo, 5);
-		exit(1);
-	}
-	while ((get_ts(data) - philo->te_eat) < data->eat_t)
-		usleep(50);
 	status_log(data, philo, 1);
+	while ((get_ts(data) - philo->te_eat) < data->eat_t
+		&& !data->catastrophy)
+	{
+		catastrophy_checker(data, philo);
+		usleep(50);
+	}
+	catastrophy_checker(data, philo);
+	data->meals++;
 	pthread_mutex_unlock(&data->forks[philo->left_fork]);
 	pthread_mutex_unlock(&data->forks[philo->right_fork]);
 }
@@ -51,16 +49,15 @@ static void	sleeping_ft(t_data *data, t_philo *philo)
 	int		nap_start;
 
 	nap_start = get_ts(data);
-	catastrophy_checker(data, philo);
-	if (data->catastrophy)
-	{
-		status_log(data, philo, 4);
-		exit(1);
-	}
 	philo->te_sleep = get_ts(data);
 	status_log(data, philo, 2);
-	while ((get_ts(data) - nap_start) < data->sleep_t)
+	while ((get_ts(data) - nap_start) < data->sleep_t
+		&& !data->catastrophy)
+	{
+		catastrophy_checker(data, philo);
 		usleep(50);
+	}
+	catastrophy_checker(data, philo);
 	philo->te_think = get_ts(data);
 	status_log(data, philo, 3);
 }
@@ -71,25 +68,18 @@ static void	philo_loop(t_data *data, t_philo *philo)
 	{
 		catastrophy_checker(data, philo);
 		if (!data->catastrophy)
-		{
 			eating_ft(data, philo);
-			data->meals++;
-		}
 		catastrophy_checker(data, philo);
 		if (!data->catastrophy)
 			sleeping_ft(data, philo);
 		if (data->total_eat > 0
 			&& (data->meals / data->n_philos) == data->total_eat)
-		{
-			status_log(data, philo, 4);
-			exit(0);
-		}
-		catastrophy_checker(data, philo);
-		if (data->catastrophy)
-		{
-			status_log(data, philo, 4);
-			exit(1);
-		}
+			break ;
+	}
+	if (data->catastrophy)
+	{
+		pthread_mutex_lock(&data->get_death_philo);
+		data->death_philo = philo->philo_no;
 	}
 }
 
@@ -107,5 +97,6 @@ void	*thread_rutine(void *p)
 	// if (philo->philo_no % 2)
 	// 	usleep(250);
 	philo_loop(data, philo);
+	pthread_mutex_unlock(&data->get_death_philo);
 	return (NULL);
 }

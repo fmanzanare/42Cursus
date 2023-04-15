@@ -36,7 +36,7 @@ typedef struct s_philo
 typedef struct s_data
 {
 	int				n_philos;
-	int				p_start;
+	long int		p_start;
 	int				death_t;
 	int				eat_t;
 	int				sleep_t;
@@ -44,6 +44,9 @@ typedef struct s_data
 	int				meals;
 	int				philo_ptr;
 	int				catastrophy;
+	pthread_mutex_t	get_death_philo;
+	int				death_philo;
+	int				te_death;
 	struct timeval	*curr_time;
 	pthread_t		*philos_ids;
 	pthread_mutex_t	status;
@@ -53,14 +56,14 @@ typedef struct s_data
 
 void	data_initializer(t_data *data);
 void	ft_putstr_fd(char *str, int fd);
-void	argv_parser(t_data *data, int argc, char **argv);
-void	table_builder(t_data *data);
+int		argv_parser(t_data *data, int argc, char **argv);
+int		table_builder(t_data *data);
 void	free_table(t_philo **table);
 void	*thread_rutine(void *p);
 int		get_ts(t_data *data);
 void	mutex_arr_initializer(t_data *data);
 void	mutex_arr_destroyer(t_data *data);
 void	catastrophy_checker(t_data *data, t_philo *philo);
-void	print_eating(t_philo *philo);
+void	print_eating(t_data *data, t_philo *philo);
 
 #endif

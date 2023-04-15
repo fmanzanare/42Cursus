@@ -25,14 +25,33 @@ void	free_table(t_philo **table)
 	free(table);
 }
 
-void	table_builder(t_data *data)
+static int	rutine_checker(t_data *data)
+{
+	while (1)
+	{
+		if ((data->meals / data->n_philos) == data->total_eat)
+		{
+			printf("Philosophers ate %d times\n", data->total_eat);
+			return (1);
+		}
+		if (data->catastrophy)
+		{
+			printf("%dms %d died\n", data->te_death, data->death_philo);
+			return (0);
+		}
+	}
+
+	return (1);
+}
+
+int	table_builder(t_data *data)
 {
 	int				i;
 	struct timeval	curr_time;
 
 	i = 0;
 	gettimeofday(&curr_time, NULL);
-	data->p_start = ((curr_time.tv_sec * 1000000) + curr_time.tv_usec) / 1000;
+	data->p_start = ((curr_time.tv_sec * 1000) + (curr_time.tv_usec / 1000));
 	data->table = (t_philo **)malloc(sizeof(t_philo) * (data->n_philos));
 	data->philos_ids = (pthread_t *)malloc(sizeof(pthread_t) * data->n_philos);
 	while (i < data->n_philos)
@@ -46,8 +65,6 @@ void	table_builder(t_data *data)
 	}
 	i = 0;
 	while (i < data->n_philos)
-	{
-		pthread_join(data->table[i]->philo_id, NULL);
-		i++;
-	}
+		pthread_join(data->table[i++]->philo_id, NULL);
+	return (rutine_checker(data));
 }
