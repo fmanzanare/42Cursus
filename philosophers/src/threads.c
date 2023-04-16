@@ -12,26 +12,23 @@
 
 #include "../includes/philo.h"
 
-static void	status_log(t_data *data, t_philo *philo, int opt)
+static void	status_log(t_data *data, t_philo *philo, char *str)
 {
 	pthread_mutex_lock(&data->status);
-	if (!data->catastrophy && opt == 1)
-		print_eating(data, philo);
-	else if (!data->catastrophy && opt == 2)
-		printf("%dms %d is sleeping\n", get_ts(data), philo->philo_no);
-	else if (!data->catastrophy && opt == 3)
-		printf("%dms %d is thinking\n", get_ts(data), philo->philo_no);
+	catastrophy_checker(data, philo);
+	if (!data->catastrophy)
+		printf("%dms %d %s\n", get_ts(data), philo->philo_no, str);
 	pthread_mutex_unlock(&data->status);
 }
 
 static void	eating_ft(t_data *data, t_philo *philo)
 {
 	pthread_mutex_lock(&data->forks[philo->left_fork]);
-	printf("%dms %d has taken a fork\n", get_ts(data), philo->philo_no);
+	status_log(data, philo, "has taken a fork");
 	pthread_mutex_lock(&data->forks[philo->right_fork]);
-	printf("%dms %d has taken a fork\n", get_ts(data), philo->philo_no);
+	status_log(data, philo, "has taken a fork");
 	philo->te_eat = get_ts(data);
-	status_log(data, philo, 1);
+	status_log(data, philo, "is eating");
 	while ((get_ts(data) - philo->te_eat) < data->eat_t
 		&& !data->catastrophy)
 	{
@@ -50,7 +47,7 @@ static void	sleeping_ft(t_data *data, t_philo *philo)
 
 	nap_start = get_ts(data);
 	philo->te_sleep = get_ts(data);
-	status_log(data, philo, 2);
+	status_log(data, philo, "is sleeping");
 	while ((get_ts(data) - nap_start) < data->sleep_t
 		&& !data->catastrophy)
 	{
@@ -59,7 +56,7 @@ static void	sleeping_ft(t_data *data, t_philo *philo)
 	}
 	catastrophy_checker(data, philo);
 	philo->te_think = get_ts(data);
-	status_log(data, philo, 3);
+	status_log(data, philo, "is thinking");
 }
 
 static void	philo_loop(t_data *data, t_philo *philo)
@@ -94,8 +91,8 @@ void	*thread_rutine(void *p)
 	philo->right_fork = philo->philo_no;
 	if (philo->right_fork == data->n_philos)
 		philo->right_fork = 0;
-	// if (philo->philo_no % 2)
-	// 	usleep(250);
+	if (philo->philo_no % 2)
+		usleep(250);
 	philo_loop(data, philo);
 	pthread_mutex_unlock(&data->get_death_philo);
 	return (NULL);
