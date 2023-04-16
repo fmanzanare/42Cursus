@@ -6,7 +6,7 @@
 #    By: fmanzana <fmanzana@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 16:27:25 by fmanzana          #+#    #+#              #
-#    Updated: 2023/04/14 20:59:35 by fmanzana         ###   ########.fr        #
+#    Updated: 2023/04/16 11:12:37 by fmanzana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = philo
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pthread
 
-SRCS = $(addprefix ./src/, main_philo.c argv_utils.c philo_utils.c threads.c time_fts.c struct_utils.c logs_utils.c)
+SRCS = $(addprefix ./src/, main_philo.c argv_utils.c philo_utils.c threads.c time_fts.c struct_utils.c)
 
 OBJS = $(addsuffix .o, $(notdir $(basename $(SRCS))))
 

@@ -35,8 +35,11 @@ static void	eating_ft(t_data *data, t_philo *philo)
 		catastrophy_checker(data, philo);
 		usleep(50);
 	}
-	catastrophy_checker(data, philo);
-	data->meals++;
+	if (!data->catastrophy)
+	{
+		data->meals++;
+		philo->last_meal = get_ts(data);
+	}
 	pthread_mutex_unlock(&data->forks[philo->left_fork]);
 	pthread_mutex_unlock(&data->forks[philo->right_fork]);
 }
@@ -91,7 +94,7 @@ void	*thread_rutine(void *p)
 	philo->right_fork = philo->philo_no;
 	if (philo->right_fork == data->n_philos)
 		philo->right_fork = 0;
-	if (philo->philo_no % 2)
+	if (philo->philo_no % 2 == 0)
 		usleep(250);
 	philo_loop(data, philo);
 	pthread_mutex_unlock(&data->get_death_philo);

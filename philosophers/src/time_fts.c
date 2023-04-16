@@ -27,7 +27,7 @@ void	catastrophy_checker(t_data *data, t_philo *philo)
 	pthread_mutex_lock(&data->get_death_philo);
 	if (!data->catastrophy)
 	{
-		if (get_ts(data) - philo->te_eat >= data->death_t)
+		if (get_ts(data) - philo->last_meal >= data->death_t)
 			data->catastrophy = 1;
 		if (data->catastrophy)
 			data->te_death = get_ts(data);

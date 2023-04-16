@@ -27,20 +27,17 @@ void	free_table(t_philo **table)
 
 static int	rutine_checker(t_data *data)
 {
-	while (1)
+	if ((data->meals / data->n_philos) == data->total_eat
+		&& data->total_eat > 0)
 	{
-		if ((data->meals / data->n_philos) == data->total_eat)
-		{
-			printf("Philosophers ate %d times\n", data->total_eat);
-			return (1);
-		}
-		if (data->catastrophy)
-		{
-			printf("%dms %d died\n", data->te_death, data->death_philo);
-			return (0);
-		}
+		printf("Philosophers ate %d times\n", data->total_eat);
+		return (1);
 	}
-
+	if (data->catastrophy)
+	{
+		printf("%dms %d died\n", data->te_death, data->death_philo);
+		return (0);
+	}
 	return (1);
 }
 

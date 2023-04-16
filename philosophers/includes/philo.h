@@ -31,6 +31,7 @@ typedef struct s_philo
 	int					te_sleep;
 	int					te_think;
 	int					te_death;
+	int					last_meal;
 }				t_philo;
 
 typedef struct s_data
@@ -54,16 +55,15 @@ typedef struct s_data
 	t_philo			**table;
 }				t_data;
 
-void	data_initializer(t_data *data);
-void	ft_putstr_fd(char *str, int fd);
-int		argv_parser(t_data *data, int argc, char **argv);
-int		table_builder(t_data *data);
-void	free_table(t_philo **table);
-void	*thread_rutine(void *p);
-int		get_ts(t_data *data);
-void	mutex_arr_initializer(t_data *data);
-void	mutex_arr_destroyer(t_data *data);
-void	catastrophy_checker(t_data *data, t_philo *philo);
-void	print_eating(t_data *data, t_philo *philo);
+void		data_initializer(t_data *data);
+void		ft_putstr_fd(char *str, int fd);
+int			argv_parser(t_data *data, int argc, char **argv);
+int			table_builder(t_data *data);
+void		free_table(t_philo **table);
+void		*thread_rutine(void *p);
+int			get_ts(t_data *data);
+void		mutex_arr_initializer(t_data *data);
+void		mutex_arr_destroyer(t_data *data);
+void		catastrophy_checker(t_data *data, t_philo *philo);
 
 #endif
