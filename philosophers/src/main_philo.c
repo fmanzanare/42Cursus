@@ -42,7 +42,7 @@ static int	error_mng(t_data *data)
 	return (flag);
 }
 
-static void world_destroyer(t_data *data)
+static void	world_destroyer(t_data *data)
 {
 	mutex_arr_destroyer(data);
 	pthread_mutex_destroy(&data->status);
@@ -52,16 +52,10 @@ static void world_destroyer(t_data *data)
 	free(data->forks);
 }
 
-void leaks(void)
-{
-	system("leaks -q philo");
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	//atexit(leaks);
 	data_initializer(&data);
 	if (!argv_parser(&data, argc, argv) || !error_mng(&data))
 		return (1);
