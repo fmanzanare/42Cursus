@@ -31,6 +31,8 @@ static int	ft_atoi(char *str)
 	num = 0;
 	if (!*str)
 		return (0);
+	else if (!(*str >= '0' && *str <= '9'))
+		return (-1);
 	if (*str == '+')
 		str++;
 	if (*str == '-')

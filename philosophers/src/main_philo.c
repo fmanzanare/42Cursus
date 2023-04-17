@@ -55,14 +55,17 @@ static void	world_destroyer(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	int		flag;
 
 	data_initializer(&data);
 	if (!argv_parser(&data, argc, argv) || !error_mng(&data))
 		return (1);
 	pthread_mutex_init(&data.status, NULL);
 	pthread_mutex_init(&data.get_death_philo, NULL);
-	mutex_arr_initializer(&data);
-	if (!table_builder(&data))
+	if (mutex_arr_initializer(&data))
+		return (1);
+	flag = table_builder(&data);
+	if (flag == 2)
 	{
 		world_destroyer(&data);
 		return (1);

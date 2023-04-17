@@ -62,8 +62,9 @@ int			table_builder(t_data *data);
 void		free_table(t_philo **table);
 void		*thread_rutine(void *p);
 int			get_ts(t_data *data);
-void		mutex_arr_initializer(t_data *data);
+int			mutex_arr_initializer(t_data *data);
 void		mutex_arr_destroyer(t_data *data);
 void		catastrophy_checker(t_data *data, t_philo *philo);
+int			ft_error_writer(void);
 
 #endif

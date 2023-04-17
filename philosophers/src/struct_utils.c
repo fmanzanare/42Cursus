@@ -12,6 +12,12 @@
 
 #include "../includes/philo.h"
 
+int	ft_error_writer(void)
+{
+	ft_putstr_fd("Error allocating memory", 2);
+	return (2);
+}
+
 void	mutex_arr_destroyer(t_data *data)
 {
 	int		i;
@@ -24,17 +30,20 @@ void	mutex_arr_destroyer(t_data *data)
 	}
 }
 
-void	mutex_arr_initializer(t_data *data)
+int	mutex_arr_initializer(t_data *data)
 {
 	int		i;
 
 	i = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philos);
+	if (!data->forks)
+		return (ft_error_writer());
 	while (i < data->n_philos)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
 		i++;
 	}
+	return (0);
 }
 
 void	data_initializer(t_data *data)
