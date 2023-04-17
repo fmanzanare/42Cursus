@@ -22,33 +22,46 @@ void	ft_putstr_fd(char *str, int fd)
 	write(1, "\n", 1);
 }
 
+static int	nodigit_fdr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 static int	ft_atoi(char *str)
 {
-	long int	num;
-	int			sign;
+	long int			num;
+	int					sign;
+	int					num_str;
 
+	num_str = nodigit_fdr(str);
 	sign = 1;
 	num = 0;
 	if (!*str)
 		return (0);
-	else if (!(*str >= '0' && *str <= '9'))
-		return (-1);
-	if (*str == '+')
+	while (ft_isspecialchar(*str))
 		str++;
-	if (*str == '-')
-	{
+	if (ft_issign(*str) == -1)
 		sign = -1;
+	if (ft_issign(*str))
 		str++;
-	}
-	while (*str && (*str >= '0' && *str <= '9'))
+	while (*str && ft_isdigit(*str))
 	{
 		num = num * 10 + (*str - '0');
 		str++;
 	}
+	if (!num_str || num < INT_MIN || num > INT_MAX)
+		return (-1);
 	num *= sign;
-	if (num > INT_MIN && num < INT_MAX)
-		return ((int)num);
-	return (-1);
+	return ((int)num);
 }
 
 int	argv_parser(t_data *data, int argc, char **argv)

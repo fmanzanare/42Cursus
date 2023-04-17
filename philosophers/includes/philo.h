@@ -67,4 +67,9 @@ void		mutex_arr_destroyer(t_data *data);
 void		catastrophy_checker(t_data *data, t_philo *philo);
 int			ft_error_writer(void);
 
+/* CHAR UTILS */
+int			ft_isspecialchar(char c);
+int			ft_isdigit(int c);
+int			ft_issign(char c);
+
 #endif
