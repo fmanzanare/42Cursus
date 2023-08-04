@@ -22,3 +22,6 @@
 [submodule "cpp-modules/CPP-05"]
 	path = cpp-modules/CPP-05
 	url = git@github.com:fmanzanare/CPP-05.git
+[submodule "cpp-modules/CPP-06"]
+	path = cpp-modules/CPP-06
+	url = git@github.com:fmanzanare/CPP-06.git
