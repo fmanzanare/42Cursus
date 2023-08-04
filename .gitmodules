@@ -28,3 +28,6 @@
 [submodule "cpp-modules/CPP-07"]
 	path = cpp-modules/CPP-07
 	url = git@github.com:fmanzanare/CPP-07.git
+[submodule "cpp-modules/CPP-08"]
+	path = cpp-modules/CPP-08
+	url = git@github.com:fmanzanare/CPP-08.git
