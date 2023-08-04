@@ -10,3 +10,6 @@
 [submodule "cpp-modules/CPP-01"]
 	path = cpp-modules/CPP-01
 	url = git@github.com:fmanzanare/CPP-01.git
+[submodule "cpp-modules/CPP-02"]
+	path = cpp-modules/CPP-02
+	url = git@github.com:fmanzanare/CPP-02.git
