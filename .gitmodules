@@ -1,3 +1,9 @@
 [submodule "cpp-modules/CPP-00"]
 	path = cpp-modules/CPP-00
 	url = git@github.com:fmanzanare/CPP-00.git
+[submodule "minishell"]
+	path = minishell
+	url = git@github.com:victorgorka/minishell.git
+[submodule "cub3D"]
+	path = cub3D
+	url = git@github.com:victorgorka/cub3D.git
