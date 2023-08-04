@@ -7,3 +7,6 @@
 [submodule "cub3D"]
 	path = cub3D
 	url = git@github.com:victorgorka/cub3D.git
+[submodule "cpp-modules/CPP-01"]
+	path = cpp-modules/CPP-01
+	url = git@github.com:fmanzanare/CPP-01.git
